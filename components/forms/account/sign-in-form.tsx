@@ -5,16 +5,18 @@ import {
   SignInValidator,
   TSignInValidator,
 } from "@/lib/validators/account/signin.validator";
+import { IEmailPasswordFormValues } from "@/types/user";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
-interface ISignInForm {
-  onFormSubmit: () => Promise<void>;
+
+interface Props {
+  onFormSubmit:  (formData: IEmailPasswordFormValues) => void
 }
 
-export const SignInForm: React.FC<ISignInForm> = (props) => {
+export const SignInForm: React.FC<Props> = (props) => {
   const {
     register,
     handleSubmit,

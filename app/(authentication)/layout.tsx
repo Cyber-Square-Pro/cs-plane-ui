@@ -1,4 +1,5 @@
-import { Navbar } from "./_components/navbar"
+import { Navbar } from "../../components/navbar"
+import "react-toastify/dist/ReactToastify.css";
 
 const AuthenticationLayout = ({
     children
@@ -9,7 +10,7 @@ const AuthenticationLayout = ({
     return (
         <div className="h-full">
             <Navbar />
-            <main className="pt-7 sm:pt-0 pb-20 h-full">
+            <main className="pt-16 sm:pt-0 pb-20 h-full">
                 {children}
             </main>
             

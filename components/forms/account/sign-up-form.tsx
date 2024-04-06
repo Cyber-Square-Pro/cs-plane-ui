@@ -3,15 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { SignUpValidator, TSignUpValidator } from "@/lib/validators/account/signup.validator";
+import { IEmailPasswordFormValues } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
-interface ISignUpForm {
-  onFormSubmit: () => Promise<void>;
+
+interface Props {
+  onFormSubmit:  (formData: IEmailPasswordFormValues) => void
 }
 
-export const SignUpForm: React.FC<ISignUpForm> = (props) => {
+export const SignUpForm: React.FC<Props> = (props) => {
   const {
     register,
     handleSubmit,
