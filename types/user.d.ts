@@ -33,3 +33,37 @@ export interface IEmailPasswordFormValues {
     email: string;
     password: string;
   };
+
+ export interface IVerificationCode{
+    code: string
+  }
+
+export type TOnboardingSteps = {
+    email_verified: boolean;
+    profile_complete: boolean;
+    workspace_create: boolean;
+    workspace_invite: boolean;
+    workspace_join: boolean;
+  };
+
+  export interface IProfile {
+    first_name: string;
+    last_name: string;
+    role: string;
+  }
+  export interface IVerificationCode{
+    code: string
+  }
+
+  export interface IUserSettings {
+    id: string;
+    email: string;
+    workspace: {
+      last_workspace_id: string;
+      last_workspace_slug: string;
+      fallback_workspace_id: string;
+      fallback_workspace_slug: string;
+      invites: number;
+    };
+  }
+  

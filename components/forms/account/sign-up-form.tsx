@@ -2,7 +2,10 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { SignUpValidator, TSignUpValidator } from "@/lib/validators/account/signup.validator";
+import {
+  SignUpValidator,
+  TSignUpValidator,
+} from "@/lib/validators/account/signup.validator";
 import { IEmailPasswordFormValues } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -10,27 +13,28 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 interface Props {
-  onFormSubmit:  (formData: IEmailPasswordFormValues) => void
+  onFormSubmit: (formData: IEmailPasswordFormValues) => void;
 }
 
 export const SignUpForm: React.FC<Props> = (props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<TSignUpValidator>({
     resolver: zodResolver(SignUpValidator),
+    mode: "onChange",
   });
   const { onFormSubmit } = props;
-
+  console.log(errors);
   return (
     <form onSubmit={handleSubmit(onFormSubmit)}>
       <div className="py-2">
         <Input
-         className={cn({
-          "focus-visible:ring-red-500 px-4 py-2 border border-white rounded-md w-full":
-            errors.password,
-        })}
+          className={cn({
+            "focus-visible:ring-red-500 px-4 py-2 border border-white rounded-md w-full":
+              errors.password,
+          })}
           placeholder="Enter your email"
           {...register("email")}
         />
@@ -49,24 +53,32 @@ export const SignUpForm: React.FC<Props> = (props) => {
           {...register("password")}
         />
         {errors?.password && (
-          <p className="text-sm text-red-500 mt-3">{errors.password?.message}</p>
+          <p className="text-sm text-red-500 mt-3">
+            {errors.password?.message}
+          </p>
         )}
       </div>
       <div className="py-2">
         <Input
-           className={cn({
+          className={cn({
             "focus-visible:ring-red-500 px-4 py-2 border border-white rounded-md w-full":
               errors.confirmPassword,
           })}
           placeholder="Re-type password"
           {...register("confirmPassword")}
         />
-        {errors?.password && (
-          <p className="text-sm text-red-500 mt-3">{errors.confirmPassword?.message}</p>
+        {errors?.confirmPassword && (
+          <p className="text-sm text-red-500 mt-3">
+            {errors.confirmPassword?.message}
+          </p>
         )}
       </div>
       <div className="py-2">
-        <Button className="w-full border rounded-md" type="submit">
+        <Button
+          className="w-full border rounded-md"
+          type="submit"
+          disabled={!isValid}
+        >
           Signup
         </Button>
       </div>

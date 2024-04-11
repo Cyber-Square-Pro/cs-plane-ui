@@ -13,7 +13,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 interface Props {
-  onFormSubmit:  (formData: IEmailPasswordFormValues) => void
+  onFormSubmit: (formData: IEmailPasswordFormValues) => void;
 }
 
 export const SignInForm: React.FC<Props> = (props) => {

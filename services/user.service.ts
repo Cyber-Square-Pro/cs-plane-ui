@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "@/config/server.api.config";
 import { APIService } from "./api.service";
-import { IUser } from "@/types/user";
+import { IUser, IUserSettings } from "@/types/user";
 
 export class UserService extends APIService {
     constructor() {
@@ -36,6 +36,14 @@ export class UserService extends APIService {
           })
           .catch((error) => {
             throw error?.response?.data;
+          });
+      }
+
+      async currentUserSettings(): Promise<IUserSettings> {
+        return this.get("/api/user/me/settings/")
+          .then((response) => response?.data)
+          .catch((error) => {
+            throw error?.response;
           });
       }
 }
