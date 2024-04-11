@@ -1,19 +1,21 @@
 import { API_BASE_URL } from "@/config/server.api.config";
 import { APIService } from "./api.service";
 import { IEmailPasswordFormValues } from "@/types/user";
+import axios, { AxiosInstance } from "axios";
 
 export class AuthService extends APIService {
+
+  private axiosObj: AxiosInstance;
+
     constructor() {
-      console.log('next url', API_BASE_URL
-      );
-      
       super(API_BASE_URL);
+      this.axiosObj = axios.create();
     }
 
 
     async userSignUp(data:IEmailPasswordFormValues): Promise<any> {
         console.log(data)
-          return this.post("/api/user/sign-up/", data, { headers: {} })
+          return this.axiosObj.post(API_BASE_URL + "/api/user/sign-up/", data, { headers: {} })
             .then((response) => {
               this.setAccessToken(response?.data?.access_token);
               this.setRefreshToken(response?.data?.refresh_token);
@@ -26,7 +28,7 @@ export class AuthService extends APIService {
 
     async userSignIn(data:IEmailPasswordFormValues): Promise<any> {
         
-         return this.post("/api/user/sign-in/", data, { headers: {} })
+         return this.axiosObj.post(API_BASE_URL +"/api/user/sign-in/", data)
               .then((response) => {
                 console.log('response is ', response?.data.status_code)
                 this.setAccessToken(response?.data?.access_token);

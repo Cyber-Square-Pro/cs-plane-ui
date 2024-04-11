@@ -15,6 +15,7 @@ const OnBoardingPage = observer(() => {
 
 
   const { user } = useUserAuth("onboarding");
+
   const email = user?.email ?? ""
   const {
     user: { currentUser, updateCurrentUser, setCurrentUserEmail },
@@ -24,31 +25,33 @@ const OnBoardingPage = observer(() => {
 
   if (user) {
     console.log("eee");
-    setCurrentUserEmail(user.email);
+    // setCurrentUserEmail(user.email);
+  }
+  else{
+    console.log('loading.....................')
   }
 
+console.log('runninngggggg....')
 
+// const stepChange = async (steps: Partial<TOnboardingSteps>) => {
+//   if (!user) return;
 
-const stepChange = async ( steps: Partial<TOnboardingSteps>,
-  formData?: IProfile) => {
-  if (!user) return;
+//   const updatedOnboardingSteps: Partial<TOnboardingSteps> = {
+//     ...user.onboarding_step,
+//     ...steps,
+//   };
 
-  const updatedOnboardingSteps: Partial<TOnboardingSteps> = {
-    ...user.onboarding_step,
-    ...steps,
-  };
+//   const payload: Partial<IUser> = {
+//     onboarding_step: updatedOnboardingSteps,
+//   };
 
-  const payload: Partial<IUser> = {
-    onboarding_step: updatedOnboardingSteps,
-    ...(formData && { ...formData }),
-  };
+//   await updateCurrentUser(payload);
 
-  await updateCurrentUser(payload);
-  handleStepChange(updatedOnboardingSteps);
-};
+//   handleStepChange(updatedOnboardingSteps);
+// };
 
 const handleStepChange = (onboardingStep: Partial<TOnboardingSteps>) => {
-  console.log(onboardingStep, "steppppppppppp");
+   
   if (!onboardingStep?.email_verified) {
     setStep(1);
     return;
@@ -92,19 +95,20 @@ useEffect(() => {
           <div className="flex">
             {step == 1 && (
               <div>
-                <VerifyEmail userEmail = {email} stepChange = {stepChange} />
+
+                <VerifyEmail userEmail = {email} handleStepChange = {handleStepChange} />
               </div>
             )}
 
             {step == 2 && (
               <div>
-                <Profile stepChange={stepChange} />
+                <Profile user={user} handleStepChange={handleStepChange}/>
               </div>
             )}
 
             {step == 3 && (
               <div>
-                <Workspace  />
+                <Workspace user={user}  handleStepChange={handleStepChange}/>
               </div>
             )}
           </div>

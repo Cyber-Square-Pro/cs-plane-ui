@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import useSWR from "swr";
 import { UserService } from "@/services/user.service";
 import { useMobxStore } from "@/store/store.provider";
-import { IUser } from "@/types/user";
+import { IUser, IUserSettings } from "@/types/user";
 
 
 const userService = new UserService();
@@ -23,7 +23,7 @@ export const useUserAuth = (routeAuth: "sign-in" | "onboarding" | "admin" | null
   });
 
   const {
-    user: { fetchCurrentUser },
+    user: { fetchCurrentUserSettings },
 
   } = useMobxStore();
 
@@ -32,13 +32,13 @@ export const useUserAuth = (routeAuth: "sign-in" | "onboarding" | "admin" | null
   useEffect(() => {
 
     const handleWorkSpaceRedirection = async () => {
-      // fetchCurrentUserSettings()
-      //   .then((userSettings: IUserSettings) => {
-      //     const workspaceSlug =
-      //       userSettings?.workspace?.last_workspace_slug || userSettings?.workspace?.fallback_workspace_slug;
-      //     if (workspaceSlug) router.push(`/workspaces/${workspaceSlug}`);
-      //   }
-      //   )
+      fetchCurrentUserSettings()
+        .then((userSettings: IUserSettings) => {
+          const workspaceSlug =
+            userSettings?.workspace?.last_workspace_slug || userSettings?.workspace?.fallback_workspace_slug;
+          if (workspaceSlug) router.push(`/workspaces/${workspaceSlug}`);
+        }
+        )
 
     }
 
@@ -61,20 +61,21 @@ export const useUserAuth = (routeAuth: "sign-in" | "onboarding" | "admin" | null
         } 
         
         else if (routeAuth === "onboarding") {
+          
           if (user.is_onboarded) handleWorkSpaceRedirection();
-          else {
-            // setIsRouteAccess(() => false);
-            return;
-          }
-        } else {
-          if (!user.is_onboarded) {
-            router.push("/onboarding");
-            return;
-          } else {
-            // setIsRouteAccess(() => false);
-            return;
-          }
-        }
+          else router.push("/onboarding");
+          
+        } 
+        
+        // else {
+        //   if (!user.is_onboarded) {
+        //     router.push("/onboarding");
+        //     return;
+        //   } else {
+        //     // setIsRouteAccess(() => false);
+        //     return;
+        //   }
+        // }
       } else {
         return;
       }
@@ -84,7 +85,7 @@ export const useUserAuth = (routeAuth: "sign-in" | "onboarding" | "admin" | null
       handleUserRouteAuthentication();
     }
 
-  }, [user, isLoading,])
+  }, [user])
 
   return {
 

@@ -16,12 +16,15 @@ const SignUpPage = () => {
   const toast = new Toast();
 
   const onFormSubmit = (formData: IEmailPasswordFormValues) => {
-    
+
     return authService.userSignUp(formData).then((response) => {
       console.log(response?.status_code)
       if (response?.status_code == 201) {
         toast.showToast("success", response?.message);
+        setTimeout(() => {
         router.push("/onboarding")
+          
+        }, 1000);
       }
       if (response?.status_code == 409) {
         toast.showToast("error", response?.message);

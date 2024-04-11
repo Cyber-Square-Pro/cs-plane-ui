@@ -4,15 +4,23 @@ import { ToastContainer } from "react-toastify";
 import { IWorkspace } from "@/types/workspace";
 import { Toast } from "@/lib/toast/toast";
 import { RESTRICTED_URLS } from "@/constants/workspace";
-import { TOnboardingSteps } from "@/types/user";
+import { IUser, TOnboardingSteps } from "@/types/user";
 import { WorkspaceService } from "@/services/workspace";
 import { useMobxStore } from "@/store/store.provider";
 import { FormHeading } from "@/components/form-elements/form-heading";
+import { observer } from "mobx-react-lite";
+import { useUserAuth } from "@/hooks/use-user-auth";
 
+interface Props{
+  user: IUser,
+  handleStepChange: (onboardingStep: Partial<TOnboardingSteps>) => void;
+}
  
-export const Workspace = () => {
+export const Workspace : React.FC<Props> = observer((props) => {
   const toast = new Toast();
-  
+  // const { user, handleStepChange } = props;
+  // const { user: userStore } = useMobxStore();
+  const { mutateUser } = useUserAuth("onboarding");
   const workspaceService = new WorkspaceService();
   const { workspace: workspaceStore } = useMobxStore();
 
@@ -30,10 +38,14 @@ export const Workspace = () => {
       if (response.status === true) {
         await workspaceStore
           .createWorkspace(formData)
-          .then( (response: any) => {
+          .then((response: any) => {
             
             toast.showToast("success", "Workspace Created");
-           
+            setTimeout(() => {
+              mutateUser()
+            }, 1000);
+            
+
           });
       } else {
         toast.showToast("error", "Workspace Exists");
@@ -52,6 +64,6 @@ export const Workspace = () => {
       <ToastContainer />
     </div>
   );
-};
+});
 
 

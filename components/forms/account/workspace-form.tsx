@@ -22,15 +22,17 @@ export const WorkspaceForm: React.FC<Props> = (props) => {
   const { onSubmit } = props;
   const BASE_URL = "http://localhost:8000"
   const [organizationSize, setorganizationSize] = useState<string | null>(null);
-  const [slugValue, setsetSlug] = useState<string | null>(null);
+   
   
   const {
     register,
     handleSubmit,
     setValue,
+    trigger,
     formState: { isValid },
   } = useForm<TWorkspaceValidator>({
     resolver: zodResolver(WorkspaceValidator),
+    mode: "onChange"
   });
   const [workspaceSlug, setWorkspaceSlug] = useState(
     `${BASE_URL}/workspace/`
@@ -77,6 +79,7 @@ export const WorkspaceForm: React.FC<Props> = (props) => {
         <CustomDropdown
           onSelect={(selectedItem) => {
             setValue("organization_size", selectedItem), setorganizationSize(selectedItem);
+            trigger("organization_size")
           }}
           dropDownTitle={
             organizationSize ? organizationSize : "Select organisation size"
@@ -86,7 +89,11 @@ export const WorkspaceForm: React.FC<Props> = (props) => {
       </div>
 
       <div className="py-2">
-        <Button className="w-full border rounded-md" type="submit">
+        <Button
+         className="w-full border rounded-md" 
+         type="submit"
+         disabled = {!isValid}
+         >
           Continue
         </Button>
       </div>
