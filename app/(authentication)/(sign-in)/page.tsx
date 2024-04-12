@@ -18,13 +18,13 @@ const SignInPage = () => {
   const [isLoading, setLoading] = useState(false);
 
   const {
-    user: { fetchCurrentUser, setCurrentUserEmail, fetchCurrentUserSettings },
+    user: { fetchCurrentUser, fetchCurrentUserSettings },
   } = useMobxStore();
 
   const handleLoginRedirection = useCallback(
     (user: IUser) => {
       if (!user.is_onboarded) {
-        setCurrentUserEmail(user.email);
+        
         router.push("/onboarding");
         return;
       }

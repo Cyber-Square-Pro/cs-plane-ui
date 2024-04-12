@@ -33,19 +33,7 @@ const OnBoardingPage = observer(() => {
 
 console.log('runninngggggg....')
 
-const stepChange = async (steps: Partial<TOnboardingSteps>) => {
-  if (!user) return;
 
-  const payload: Partial<IUser> = {
-    onboarding_step: {
-      ...user.onboarding_step,
-      ...steps,
-    },
-  };
-
-  await updateCurrentUser(payload);
-  
-};
 
 
 const handleStepChange = (onboardingStep: Partial<TOnboardingSteps>) => {
