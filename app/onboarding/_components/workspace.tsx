@@ -40,7 +40,7 @@ export const Workspace : React.FC<Props> = observer((props) => {
           .createWorkspace(formData)
           .then((response: any) => {
             
-            toast.showToast("success", "Workspace Created");
+            toast.showToast("success", response?.message);
             setTimeout(() => {
               mutateUser()
             }, 1000);

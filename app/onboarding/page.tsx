@@ -33,25 +33,23 @@ const OnBoardingPage = observer(() => {
 
 console.log('runninngggggg....')
 
-// const stepChange = async (steps: Partial<TOnboardingSteps>) => {
-//   if (!user) return;
+const stepChange = async (steps: Partial<TOnboardingSteps>) => {
+  if (!user) return;
 
-//   const updatedOnboardingSteps: Partial<TOnboardingSteps> = {
-//     ...user.onboarding_step,
-//     ...steps,
-//   };
+  const payload: Partial<IUser> = {
+    onboarding_step: {
+      ...user.onboarding_step,
+      ...steps,
+    },
+  };
 
-//   const payload: Partial<IUser> = {
-//     onboarding_step: updatedOnboardingSteps,
-//   };
+  await updateCurrentUser(payload);
+  
+};
 
-//   await updateCurrentUser(payload);
-
-//   handleStepChange(updatedOnboardingSteps);
-// };
 
 const handleStepChange = (onboardingStep: Partial<TOnboardingSteps>) => {
-   
+   console.log('inside handle change', onboardingStep )
   if (!onboardingStep?.email_verified) {
     setStep(1);
     return;

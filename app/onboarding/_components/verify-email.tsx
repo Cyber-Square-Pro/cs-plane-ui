@@ -11,14 +11,13 @@ import FormDescription from "@/components/form-elements/form.description";
 
 interface Props {
   handleStepChange: (onboardingStep: Partial<TOnboardingSteps>) => void;
-
   userEmail: string;
 }
 
 export const VerifyEmail: React.FC<Props> = observer((props) => {
   const { handleStepChange, userEmail } = props;
 
-  const email = userEmail;
+ 
 
    
   const emailService = new EmailService();
@@ -48,7 +47,7 @@ export const VerifyEmail: React.FC<Props> = observer((props) => {
         <FormDescription
           descriptionText={
             <>
-              <span className="text-blue-700 font-bold px-2">{email}</span>{" "}
+              <span className="text-blue-700 font-bold px-2">{userEmail}</span>{" "}
               below
             </>
           }

@@ -11,7 +11,7 @@ import { useMobxStore } from "@/store/store.provider";
 import { UserStore } from "@/store/user.store";
 
 interface Props {
-  user: IUser,
+  user: IUser;
   handleStepChange: (onboardingStep: Partial<TOnboardingSteps>) => void;
 }
 
@@ -30,19 +30,18 @@ export const Profile: React.FC<Props> = observer((props) => {
         profile_complete: true,
       },
     };
+    console.log(
+      "payload is",
+      payload.onboarding_step as Partial<TOnboardingSteps>
+    );
     await userStore.updateCurrentUser(payload)
 
     setTimeout(() => {
-      handleStepChange({
-        ...user.onboarding_step,
-        profile_complete: true,
-      });
+      handleStepChange(payload.onboarding_step as Partial<TOnboardingSteps>);
     }, 1000);
-    
-    
   };
 
-  console.log('user in profile', user)
+  console.log("user in profile", user);
 
   return (
     <div className="flex justify-center px-20 items-center h-full">
@@ -54,9 +53,7 @@ export const Profile: React.FC<Props> = observer((props) => {
           </div>
         </div>
 
-        <FormDescription
-         descriptionText="Create your profile for the plane account." 
-         />
+        <FormDescription descriptionText="Create your profile for the plane account." />
         <div>
           <ProfileForm onSubmit={submitCode} />
         </div>

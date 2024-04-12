@@ -11,7 +11,7 @@
     }
 
     private setupInterceptors() {
-      console.log('intercepting...', this.getHeaders())
+ 
       axios.interceptors.request.use(
         (config: any) => {
 
