@@ -3,33 +3,42 @@ import React from "react";
 import { SignInForm } from "@/components/forms/account/sign-in-form";
 import { SignUpForm } from "@/components/forms/account/sign-up-form";
 import { useRouter } from "next/navigation";
-import { AuthService } from "@/services/auth.service";
 import { IEmailPasswordFormValues } from "@/types/user";
 import { FormHeading } from "@/components/form-elements/form-heading";
 import FormDescription from "@/components/form-elements/form.description";
 import { Toast } from "@/lib/toast/toast";
 import { ToastContainer } from "react-toastify";
 
+
 const SignUpPage = () => {
+  
   const router = useRouter();
-  const authService = new AuthService();
   const toast = new Toast();
 
-  const onFormSubmit = (formData: IEmailPasswordFormValues) => {
-
-    return authService.userSignUp(formData).then((response) => {
-      console.log(response?.status_code)
-      if (response?.status_code == 201) {
-        toast.showToast("success", response?.message);
-        setTimeout(() => {
-        router.push("/onboarding")
-          
-        }, 1000);
-      }
-      if (response?.status_code == 409) {
-        toast.showToast("error", response?.message);
-      }
+  const onFormSubmit = async (formData: IEmailPasswordFormValues) => {
+    const response = await fetch("/api/auth/sign-up", {
+      method: "POST",
+      body: JSON.stringify(formData),
     });
+
+    const responseData = await response.json();
+
+   
+    if (responseData.statusCode == 201) {
+
+      
+      toast.showToast("success", responseData.message);
+
+      
+      setTimeout(() => {
+        router.push("/onboarding");
+      }, 1000);
+
+    } 
+    
+    else {
+      toast.showToast("error", responseData.message);
+    }
   };
 
   return (
@@ -43,7 +52,6 @@ const SignUpPage = () => {
       </div>
 
       <ToastContainer />
-
     </div>
   );
 };

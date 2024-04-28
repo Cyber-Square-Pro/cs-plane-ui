@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
-import { UserService } from "@/services/user.service";
 import { useMobxStore } from "@/store/store.provider";
 import { IUser, IUserSettings } from "@/types/user";
+import { parseCookies } from "nookies";
+import { access } from "fs";
 
 
-const userService = new UserService();
 
 export const useUserAuth = (routeAuth: "sign-in" | "onboarding" | "admin" | null = "admin") => {
 
@@ -17,7 +17,7 @@ export const useUserAuth = (routeAuth: "sign-in" | "onboarding" | "admin" | null
     isLoading,
     error,
     mutate,
-  } = useSWR<IUser>('CURRENT_USER', () => userService.currentUser(), {
+  } = useSWR<any>('CURRENT_USER', () => fetchUser(), {
     refreshInterval: 0,
     shouldRetryOnError: false,
   });
@@ -27,6 +27,28 @@ export const useUserAuth = (routeAuth: "sign-in" | "onboarding" | "admin" | null
 
   } = useMobxStore();
 
+
+  const fetchUser = async (): Promise<IUser | null> => {
+    const response = await fetch("api/users/me")
+     
+    return response.json();
+  }
+  // async fetchUser():Promise<IUser>  {
+  //   const cookies = parseCookies();  
+  //   const accessToken = cookies.accessToken; 
+  //   console.log(accessToken, 'token is')
+  //   const response = await fetch("api/user/me", {
+  //     method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`, // Include access token in headers
+  //       },
+  //       credentials: "include", 
+
+  //   })
+
+  //   console.log('user data', response)
+  //   return response
+  // }
 
 
   useEffect(() => {

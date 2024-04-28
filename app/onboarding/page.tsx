@@ -17,27 +17,18 @@ const OnBoardingPage = observer(() => {
   const { user } = useUserAuth("onboarding");
 
   const email = user?.email ?? ""
-  const {
-    user: { currentUser, updateCurrentUser, setCurrentUserEmail },
-  } = useMobxStore();
+  // const {
+  //   user: { currentUser, updateCurrentUser, setCurrentUserEmail },
+  // } = useMobxStore();
 
-  console.log("user is", user);
+ 
 
-  if (user) {
-    console.log("eee");
-    // setCurrentUserEmail(user.email);
-  }
-  else{
-    console.log('loading.....................')
-  }
-
-console.log('runninngggggg....')
-
+   
 
 
 
 const handleStepChange = (onboardingStep: Partial<TOnboardingSteps>) => {
-   console.log('inside handle change', onboardingStep )
+ 
   if (!onboardingStep?.email_verified) {
     setStep(1);
     return;
