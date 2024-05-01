@@ -13,19 +13,20 @@ export async function POST(request: NextRequest) {
         body: JSON.stringify(requestBody),
     });
 
-    const { message, statusCode, accessToken, refreshToken } = await response.json();
+    const { message, statusCode, token } = await response.json();
+
     if (statusCode == 201) {
 
-        const cookieHeaderValue = `accessToken=${accessToken}; Path=/; HttpOnly`; // Set your cookie options as needed
-        console.log(cookieHeaderValue,'iiii')
+        const cookie = `token=${token}; Path=/; HttpOnly`;
+
         return NextResponse.json({
-            message, statusCode, accessToken, refreshToken
+            message, statusCode, token
         },
-        { 
-            headers: { "Set-Cookie": cookieHeaderValue } 
-        });
+            {
+                headers: { "Set-Cookie": cookie }
+            });
 
     }
 
-        return NextResponse.json({ message, statusCode });
+    return NextResponse.json({ message, statusCode });
 }

@@ -1,7 +1,7 @@
 import { IWorkspace } from "@/types/workspace";
 import { action, observable, runInAction, makeObservable, computed } from "mobx";
 import { RootStore } from "./root.store";
-
+import { WorkspaceService } from "@/services/workspace";
 
 export interface IWorkspaceStore {
 
@@ -9,7 +9,7 @@ export interface IWorkspaceStore {
     workspaces: IWorkspace[] | undefined;
     setWorkspaceSlug: (workspaceSlug: string) => void;
     getWorkspaceBySlug: (workspaceSlug: string) => IWorkspace | null;
-    // fetchWorkspaces: () => Promise<IWorkspace[]>;
+    fetchWorkspaces: () => Promise<IWorkspace[]>;
     createWorkspace: (data: Partial<IWorkspace>) => Promise<IWorkspace>;
     
 
@@ -26,7 +26,7 @@ export class WorkspaceStore implements IWorkspaceStore {
   workspaceSlug: string | null = null;
   workspaces: IWorkspace[] | undefined = [];
 
-  // workspaceService;
+  workspaceService;
 
   setWorkspaceSlug = (workspaceSlug: string) => (this.workspaceSlug = workspaceSlug);
   getWorkspaceBySlug = (workspaceSlug: string) => this.workspaces?.find((w) => w.slug == workspaceSlug) || null;
@@ -41,10 +41,10 @@ constructor(_rootStore: RootStore) {
       // actions
       setWorkspaceSlug: action,
       getWorkspaceBySlug: action,
-    //   fetchWorkspaces: action,
+      fetchWorkspaces: action,
 
       // workspace write operations
-    //   createWorkspace: action,
+      createWorkspace: action,
       
 
       // computed
@@ -52,7 +52,7 @@ constructor(_rootStore: RootStore) {
     })
 
     this.rootStore = _rootStore;
- 
+    this.workspaceService = new WorkspaceService()
   }
 
   get currentWorkspace() {
@@ -66,29 +66,29 @@ constructor(_rootStore: RootStore) {
   
 
 
-  // fetchWorkspaces = async () => {
-  //   try {
+  fetchWorkspaces = async () => {
+    try {
       
 
-  //     const workspaceResponse =null;
+      const workspaceResponse = await this.workspaceService.userWorkspaces();
 
-  //     runInAction(() => {
-  //       // this.workspaces = workspaceResponse;
+      runInAction(() => {
+        this.workspaces = workspaceResponse;
          
-  //     });
+      });
 
-  //     return workspaceResponse;
-  //   } catch (error) {
-  //     console.log("Failed to fetch user workspaces in workspace store", error);
+      return workspaceResponse;
+    } catch (error) {
+      console.log("Failed to fetch user workspaces in workspace store", error);
 
-  //     runInAction(() => {
+      runInAction(() => {
          
-  //       this.workspaces = [];
-  //     });
+        this.workspaces = [];
+      });
 
-  //     throw error;
-  //   }
-  // };
+      throw error;
+    }
+  };
 
 
   createWorkspace = async (data: Partial<IWorkspace>) => {
@@ -99,30 +99,17 @@ constructor(_rootStore: RootStore) {
       //   this.error = null;
       // });
 
-
-
       const user = this.rootStore.user.currentUser ?? undefined;
 
-      // const response = await this.workspaceService.createWorkspace(data);
-      const response = await fetch("api/users/me/workspaces", {
-        method: "POST",
-        body: JSON.stringify(data)
-      })
+      const response = await this.workspaceService.createWorkspace(data);
 
       runInAction(() => {
         // this.loader = false;
         // this.error = null;
-        // this.workspaces = [...(this.workspaces ?? []), response];
+        this.workspaces = [...(this.workspaces ?? []), response];
       });
-      if (response.ok) {
-        const userData = await response.json();
-        console.log('userdata', userData);
-        
-        return userData;
-        // For example, update state or trigger actions
-      }
 
-  
+      return response;
     } catch (error) {
       // runInAction(() => {
       //   this.loader = false;
@@ -135,3 +122,28 @@ constructor(_rootStore: RootStore) {
 }
 
 
+//     workspaceSlug: string | null = null;
+//     workspaces: IWorkspace[] | undefined = [];
+//     // projects: { [workspaceSlug: string]: IProject[] } = {}; // workspaceSlug: project[]
+//     // labels: { [workspaceSlug: string]: IIssueLabels[] } = {};
+//     // members: { [workspaceSlug: string]: IWorkspaceMember[] } = {};
+//       // services
+//   // workspaceService;
+//   // constructor(_rootStore: RootStore) {
+//   //   makeObservable(this, {
+//   //       workspaceSlug: observable.ref,
+//   //     workspaces: observable.ref,
+     
+      
+
+//   //     // workspace write operations
+//   //     createWorkspace: action,
+//   //     updateWorkspace: action,
+//   //     deleteWorkspace: action,
+
+//   //     // computed
+//   //     currentWorkspace: computed,
+//   //     workspaceLabels: computed,
+//     })
+    
+// }

@@ -16,11 +16,12 @@ import { IWorkspace } from "@/types/workspace";
 
 interface Props {
   onSubmit: (formData: Partial<IWorkspace>) => Promise<void>;
+  isSubmitting: boolean;
 }
 
 export const WorkspaceForm: React.FC<Props> = (props) => {
-  const { onSubmit } = props;
-  const BASE_URL = "http://localhost:8000"
+  const { onSubmit, isSubmitting } = props;
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
   const [organizationSize, setorganizationSize] = useState<string | null>(null);
    
   
@@ -42,7 +43,7 @@ export const WorkspaceForm: React.FC<Props> = (props) => {
     // Update the workspace slug with the concatenated value
     const updatedSlug = e.target.value.replace(/\s+/g, "-");
     setValue("slug", updatedSlug.trim());
-    setWorkspaceSlug(`${process.env.NEXT_PUBLIC_BASE_URL}/workspace/${updatedSlug}`);
+    setWorkspaceSlug(`${BASE_URL}/workspace/${updatedSlug}`);
   };
 
   return (
@@ -92,9 +93,9 @@ export const WorkspaceForm: React.FC<Props> = (props) => {
         <Button
          className="w-full border rounded-md" 
          type="submit"
-         disabled = {!isValid}
-         >
-          Continue
+         disabled= {!isValid || isSubmitting}
+        >
+         {isSubmitting ? "Creating..." : "Create Workspace"}  
         </Button>
       </div>
     </form>

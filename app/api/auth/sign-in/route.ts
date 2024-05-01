@@ -12,12 +12,12 @@ export async function POST(request: Request) {
     });
 
     const { message, statusCode, accessToken, refreshToken } = await response.json();
-    
+    console.log('stats', statusCode)
     if (statusCode == 200) {
         const accessTokenCookie = `accessToken=${accessToken}; Path=/; HttpOnly`;
         const refreshTokenCookie = `refreshToken=${refreshToken}; Path=/; HttpOnly`;
 
-       
+
         const cookieHeaderValue = `${accessTokenCookie}, ${refreshTokenCookie}`;
         return NextResponse.json({
             message, statusCode, accessToken, refreshToken

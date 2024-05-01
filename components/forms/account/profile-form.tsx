@@ -16,11 +16,12 @@ import {
 
 interface Props {
   onSubmit: (formData: IProfile) => Promise<void>;
+  isSubmitting: boolean;
 }
 
 export const ProfileForm: React.FC<Props> = (props) => {
   console.log(ProfileDropDownItems[0]);
-  const { onSubmit } = props;
+  const { onSubmit, isSubmitting } = props;
 
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const {
@@ -89,9 +90,9 @@ export const ProfileForm: React.FC<Props> = (props) => {
         <Button
           className="w-full border rounded-md"
           type="submit"
-          disabled={!isValid}
+          disabled= {!isValid || isSubmitting}
         >
-          Continue
+         {isSubmitting ? "Creating..." : "Create Profile"}  
         </Button>
       </div>
     </form>

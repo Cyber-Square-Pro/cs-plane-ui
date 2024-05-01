@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Toast } from "@/lib/toast/toast";
+import { EmailService } from "@/services/email.service";
 import { IVerificationCode } from "@/types/user";
 import Link from "next/link";
 import React from "react";
@@ -24,30 +25,17 @@ export const EmailVerificationForm: React.FC<Props> = observer((props) => {
   });
 
   const { onSubmit } = props;
+  const emailService = new EmailService();
   const toast = new Toast();
 
-  const handleRequestNewCode = async () => {
-
-    const apiResponse = await fetch("/api/users/email/", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
+  const handleRequestNewCode = () => {
+    return emailService.requestCode().then((response) => {
+      console.log(response?.statusCode);
+      if (response?.statusCode == 200) {
+        console.log("Verification Code: ", response?.code);
+        toast.showToast("success", response?.message);
+      }
     });
-    const data = await apiResponse.json();
-   
-    if (data.statusCode == 200){
-      console.log("Verification Code: ", data?.code);
-      toast.showToast("success", data?.message);
-    }
-
-    // return emailService.requestCode().then((response) => {
-    //   console.log(response?.status_code);
-    //   if (response?.status_code == 200) {
-    //     console.log("Verification Code: ", response?.code);
-    //     toast.showToast("success", response?.message);
-    //   }
-    // });
   };
 
   return (

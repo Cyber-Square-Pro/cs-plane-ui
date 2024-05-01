@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 
 interface Props {
   onFormSubmit: (formData: IEmailPasswordFormValues) => void;
+  isSubmitting: boolean;
 }
 
 export const SignUpForm: React.FC<Props> = (props) => {
@@ -25,7 +26,7 @@ export const SignUpForm: React.FC<Props> = (props) => {
     resolver: zodResolver(SignUpValidator),
     mode: "onChange",
   });
-  const { onFormSubmit } = props;
+  const { onFormSubmit, isSubmitting } = props;
   console.log(errors);
   return (
     <form onSubmit={handleSubmit(onFormSubmit)}>
@@ -77,9 +78,10 @@ export const SignUpForm: React.FC<Props> = (props) => {
         <Button
           className="w-full border rounded-md"
           type="submit"
-          disabled={!isValid}
+          disabled= {!isValid || isSubmitting}
         >
-          Signup
+           {isSubmitting ? "Signing Up..." : "Sign Up"}   {/* showing button text conditionally  */}
+         
         </Button>
       </div>
       <div className="py-2 text-center">

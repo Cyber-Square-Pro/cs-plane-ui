@@ -1,6 +1,6 @@
 import { ProfileForm } from "@/components/forms/account/profile-form";
 import { User } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { IProfile, IUser, TOnboardingSteps } from "@/types/user";
 import { observer } from "mobx-react-lite";
 import { Toast } from "@/lib/toast/toast";
@@ -19,9 +19,10 @@ export const Profile: React.FC<Props> = observer((props) => {
   const { user: userStore } = useMobxStore();
   const { user, handleStepChange } = props;
   const toast = new Toast();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);  
 
   const submitCode = async (formData: IProfile) => {
-    toast.showToast("success", "Profile Updated");
+    
 
     const payload: Partial<IUser> = {
       ...formData,
@@ -32,12 +33,14 @@ export const Profile: React.FC<Props> = observer((props) => {
     };
     console.log(
       "payload is",
-      payload.onboarding_step as Partial<TOnboardingSteps>
+      payload
     );
     await userStore.updateCurrentUser(payload)
-
+    toast.showToast("success", "Profile Updated");
+    setIsSubmitting(true)
     setTimeout(() => {
       handleStepChange(payload.onboarding_step as Partial<TOnboardingSteps>);
+      setIsSubmitting(false)
     }, 1000);
   };
 
@@ -55,7 +58,10 @@ export const Profile: React.FC<Props> = observer((props) => {
 
         <FormDescription descriptionText="Create your profile for the plane account." />
         <div>
-          <ProfileForm onSubmit={submitCode} />
+          <ProfileForm
+           onSubmit={submitCode} 
+           isSubmitting={isSubmitting}
+           />
         </div>
       </div>
       <ToastContainer />

@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { IVerificationCode, TOnboardingSteps } from "@/types/user";
 import { Toast } from "@/lib/toast/toast";
 import { observer } from "mobx-react-lite";
+import { EmailService } from "@/services/email.service";
 import FormDescription from "@/components/form-elements/form.description";
 
 interface Props {
@@ -16,32 +17,25 @@ interface Props {
 export const VerifyEmail: React.FC<Props> = observer((props) => {
   const { handleStepChange, userEmail } = props;
 
+  const emailService = new EmailService();
   const toast = new Toast();
 
-  const submitCode = async (formData: IVerificationCode) => {
-   
-    
-    const apiResponse = await fetch("/api/users/email/verify", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await apiResponse.json();
-
-    if (data.statusCode == 200) {
-      toast.showToast("success", data?.message);
-      setTimeout(() => {
-        handleStepChange({ email_verified: true });
-      }, 1000);
-
-    } else{
-      toast.showToast("error", data?.message);
-    }
  
-  };
+    const submitCode = async (formData: IVerificationCode) => {
+      return emailService.verifyEmail(formData).then(async (response) => {
+        console.log(formData);
+        if (response?.statusCode == 200) {
+          toast.showToast("success", response?.message);
+          setTimeout(() => {
+            handleStepChange({ email_verified: true });
+          }, 1000);
+        } else {
+          toast.showToast("error", response?.message);
+        }
+      });
+    };
+ 
+  
 
   return (
     <div className="flex justify-center items-center h-full">

@@ -6,7 +6,7 @@ import {
   makeObservable,
   runInAction
 } from "mobx";
-
+import { UserService } from "@/services/user.service";
 
 
 export interface IUserStore {
@@ -14,54 +14,47 @@ export interface IUserStore {
   currentUserEmail: string | null;
   currentUserSettings: IUserSettings | null;
 
-  // updateUserOnBoard: () => Promise<void>;
+  updateUserOnBoard: () => Promise<void>;
   setCurrentUserEmail: (email: string) => void;
   fetchCurrentUserSettings: () => Promise<IUserSettings>;
   updateCurrentUser: (data: Partial<IUser>) => Promise<IUser>;
-  fetchCurrentUser: () => Promise<any>;
+  fetchCurrentUser: () => Promise<IUser>;
 }
 
 export class UserStore implements IUserStore {
 
   currentUser: IUser | null = null;
   currentUserEmail: string | null = null;
-
+  userService;
   currentUserSettings: IUserSettings | null = null;
 
 
   constructor(_rootStore: RootStore) {
     makeObservable(this, {
       currentUser: observable.ref,
-      // updateUserOnBoard: action,
+      updateUserOnBoard: action,
       currentUserEmail: observable,
       currentUserSettings: observable.ref,
 
     })
-
+    this.userService = new UserService()
+    // this.loadEmailFromLocalStorage();
   }
 
   setCurrentUserEmail = (email: string) => {
     localStorage.setItem('currentUserEmail', email);
   }
 
-
-
-
   fetchCurrentUser = async () => {
     try {
-      console.log('in store')
-
-      const response = await fetch("api/users/me")
-
-
-      if (response.ok) {
-        const userData = await response.json();
-        return userData;
-        // For example, update state or trigger actions
+      const response = await this.userService.currentUser();
+      if (response) {
+        runInAction(() => {
+          this.currentUser = response;
+          // this.currentUserEmail = response.email
+        });
       }
-
-      // console.log(response.json(),'66666')
-
+      return response;
     } catch (error) {
       runInAction(() => {
 
@@ -70,32 +63,33 @@ export class UserStore implements IUserStore {
     }
   };
 
+  // setCurrentUserEmail = (email: string) =>{
+  //   this.currentUserEmail = email;
+  //   // Persist email to local storage when it's updated
+  //   this.persistEmailToLocalStorage();
+  // }
 
-
+  // Method to persist the email to local storage
+  persistEmailToLocalStorage = () => {
+    localStorage.setItem('currentUserEmail', this.currentUserEmail || '');
+  }
 
   updateCurrentUser = async (data: Partial<IUser>) => {
     try {
-      // runInAction(() => {
-      //   this.currentUser = {
-      //     ...this.currentUser,
-      //     ...data,
-      //   } as IUser;
-      // });
+      runInAction(() => {
+        this.currentUser = {
+          ...this.currentUser,
+          ...data,
+        } as IUser;
+      });
 
-      const response = await fetch("api/users/me", {
-        method: "PATCH",
-        body: JSON.stringify(data)
-      })
+      console.log('in service', data)
+      const response = await this.userService.updateUser(data);
 
-      if (response.ok) {
-        const userData = await response.json();
-        return userData;
-        // For example, update state or trigger actions
-      }
-      // runInAction(() => {
-      //   this.currentUser = response;
-      // });
-
+      runInAction(() => {
+        this.currentUser = response;
+      });
+      return response;
     } catch (error) {
 
 
@@ -103,45 +97,41 @@ export class UserStore implements IUserStore {
     }
   };
 
+  //   loadEmailFromLocalStorage = () => {
+  //     const email = localStorage.getItem('currentUserEmail');
+  //     if (email) {
+  //         this.currentUserEmail = email;
+  //     }
+  // }
 
-  // updateUserOnBoard = async () => {
-  //   console.log('updatimg user onboard')
-  //   try {
-  //     runInAction(() => {
-  //       this.currentUser = {
-  //         ...this.currentUser,
-  //         is_onboarded: true,
-  //       } as IUser;
-  //     });
+  updateUserOnBoard = async () => {
+    console.log('updatimg user onboard')
+    try {
+      runInAction(() => {
+        this.currentUser = {
+          ...this.currentUser,
+          is_onboarded: true,
+        } as IUser;
+      });
 
-  //     const user = this.currentUser ?? undefined;
+      const user = this.currentUser ?? undefined;
 
-  //     if (!user) return;
+      if (!user) return;
 
-  //     await this.userService.updateUserOnBoard({ userRole: user.role }, user);
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // };
+      await this.userService.updateUserOnBoard({ userRole: user.role }, user);
+    } catch (error) {
+      throw error;
+    }
+  };
 
   fetchCurrentUserSettings = async () => {
     try {
-      // const response = await this.userService.currentUserSettings();
-      const response = await fetch("api/users/me/settings/")
-
-      // if (response) {
-      //   runInAction(() => {
-      //     // this.currentUserSettings = response;
-      //   });
-      // }
-
-      if (response.ok) {
-        const userSettings = await response.json();
-        console.log('user settings', userSettings)
-        return userSettings;
-
+      const response = await this.userService.currentUserSettings();
+      if (response) {
+        runInAction(() => {
+          this.currentUserSettings = response;
+        });
       }
-
       return response;
     } catch (error) {
       throw error;
