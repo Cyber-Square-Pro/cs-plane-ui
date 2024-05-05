@@ -51,6 +51,7 @@ export const SignUpForm: React.FC<Props> = (props) => {
               errors.password,
           })}
           placeholder="Enter your password"
+          type="password"
           {...register("password")}
         />
         {errors?.password && (
@@ -66,6 +67,7 @@ export const SignUpForm: React.FC<Props> = (props) => {
               errors.confirmPassword,
           })}
           placeholder="Re-type password"
+          type="password"
           {...register("confirmPassword")}
         />
         {errors?.confirmPassword && (

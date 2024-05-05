@@ -36,14 +36,14 @@ export const WorkspaceForm: React.FC<Props> = (props) => {
     mode: "onChange"
   });
   const [workspaceSlug, setWorkspaceSlug] = useState(
-    `${BASE_URL}/workspace/`
+    `${BASE_URL}workspace/`
   );
 
   const handleWorkspaceNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Update the workspace slug with the concatenated value
     const updatedSlug = e.target.value.replace(/\s+/g, "-");
     setValue("slug", updatedSlug.trim());
-    setWorkspaceSlug(`${BASE_URL}/workspace/${updatedSlug}`);
+    setWorkspaceSlug(`${BASE_URL}workspace/${updatedSlug}`);
   };
 
   return (

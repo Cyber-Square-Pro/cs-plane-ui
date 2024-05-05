@@ -40,6 +40,7 @@ export const SignInForm: React.FC<Props> = (props) => {
         <Input
           className="w-full border rounded-md"
           placeholder="Enter your password"
+          type="password"
           {...register("password")}
         />
       </div>
