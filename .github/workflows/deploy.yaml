@@ -1,4 +1,4 @@
-name: Deploy Next.js App to EC2
+name: Deploy Plane App to EC2
 
 on:
   push:
@@ -27,6 +27,7 @@ jobs:
             /home/ubuntu/PLANE-UI/DEV/cs-plane-ui
             git pull origin development   
             sudo systemctl restart nginx  # Restart nginx server
+            pm2 restart plane-dev   # restart pm2
    
 
 
