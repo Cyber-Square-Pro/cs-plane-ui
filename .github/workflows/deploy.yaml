@@ -29,10 +29,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}  # SSH private key for authentication
         
           script: |
+            export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v20.12.2/bin
             cd /home/ubuntu/PLANE-UI/DEV/cs-plane-ui
             git pull origin development   
             sudo systemctl restart nginx  # Restart nginx server
-            cd /home/ubuntu/PLANE-UI/DEV/cs-plane-ui
             pm2 restart plane-dev   # restart pm2
    
 
