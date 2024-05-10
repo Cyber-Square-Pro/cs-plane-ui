@@ -15,6 +15,11 @@ jobs:
       
       - name: Install dependencies
         run: npm install
+
+      - name: Install dependencies
+        run: npm install pm2 -g
+        
+
         
       - name: SSH into EC2 instance and deploy
         uses: appleboy/ssh-action@master
