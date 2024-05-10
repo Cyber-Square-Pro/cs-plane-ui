@@ -32,7 +32,8 @@ jobs:
             cd /home/ubuntu/PLANE-UI/DEV/cs-plane-ui
             git pull origin development   
             sudo systemctl restart nginx  # Restart nginx server
-            /home/ubuntu/PLANE-UI/DEV/cs-plane-ui/pm2 restart plane-dev   # restart pm2
+            cd /home/ubuntu/PLANE-UI/DEV/cs-plane-ui
+            pm2 restart plane-dev   # restart pm2
    
 
 
