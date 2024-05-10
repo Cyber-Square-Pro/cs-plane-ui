@@ -16,35 +16,7 @@ jobs:
       - name: Install dependencies
         run: npm install
         
-      - name: SSH into EC2 instance and deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}  # Your EC2 instance host/IP
-          username: ${{ secrets.EC2_USERNAME }}  # SSH username for EC2
-          key: ${{ secrets.EC2_SSH_KEY }}  # SSH private key for authentication
-        
-          script: |
-            /home/ubuntu/PLANE-UI/DEV/cs-plane-ui
-            git pull origin development   
-            sudo systemctl restart nginx  # Restart nginx server
-            pm2 restart plane-dev   # restart pm2
-   
+     
 
 
 
-
-
-
-
-
-      - name: Build Next.js app
-        run: npm run build
-        
-      - name: Deploy to EC2
-        uses: easingthemes/deploy-ec2@v1
-        with:
-          key-name: ${{ secrets.EC2_KEY_NAME }}
-          user-name: ${{ secrets.EC2_USERNAME }}
-          host-name: ${{ secrets.EC2_HOSTNAME }}
-          source: .next
-          dest: /path/to/your/next/app  # Adjust this to your app's directory on EC2
