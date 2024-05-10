@@ -25,9 +25,7 @@ jobs:
         
           script: |
             /home/ubuntu/PLANE-UI/DEV/cs-plane-ui
-            git pull origin development   
-            sudo systemctl restart nginx  # Restart nginx server
-            pm2 restart plane-dev   # restart pm2
+            touch test.txt
    
 
 
