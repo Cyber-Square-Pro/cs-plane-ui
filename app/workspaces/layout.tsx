@@ -1,7 +1,7 @@
 import { Navbar } from "../../components/navbar"
 import "react-toastify/dist/ReactToastify.css";
 
-const AuthenticationLayout = ({
+const WorkspaceLayout = ({
     children
 }:{
     children: React.ReactNode
@@ -19,4 +19,4 @@ const AuthenticationLayout = ({
 
 }
 
-export default AuthenticationLayout
+export default WorkspaceLayout
