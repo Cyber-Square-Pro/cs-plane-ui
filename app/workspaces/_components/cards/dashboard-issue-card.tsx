@@ -4,12 +4,12 @@ import React from 'react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 
-interface CardProps {
+interface Props {
   title: string;
   description?: string;
 }
 
-const Card: React.FC<CardProps> = (props) => {
+const DashboardIssueCard: React.FC<Props> = (props) => {
   const { title, description } = props;
   const [activeTab, setActiveTab] = useState('Pending');
 
@@ -92,4 +92,4 @@ const Card: React.FC<CardProps> = (props) => {
   );
 };
 
-export default Card;
+export default DashboardIssueCard;
