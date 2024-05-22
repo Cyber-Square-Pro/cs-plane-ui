@@ -29,6 +29,7 @@ const OnBoardingPage = observer(() => {
 
 const handleStepChange = (onboardingStep: Partial<TOnboardingSteps>) => {
  
+  console.log('handle step change', onboardingStep)
   if (!onboardingStep?.email_verified) {
     setStep(1);
     return;
@@ -54,6 +55,7 @@ const handleStepChange = (onboardingStep: Partial<TOnboardingSteps>) => {
 useEffect(() => {
   // Trigger step change whenever user or its dependencies change
   if (user) {
+    console.log('changing step',user.onboarding_step)
     handleStepChange(user.onboarding_step);
   }
 }, [user]);
