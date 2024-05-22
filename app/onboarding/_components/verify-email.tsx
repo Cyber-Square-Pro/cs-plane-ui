@@ -27,7 +27,9 @@ export const VerifyEmail: React.FC<Props> = observer((props) => {
         if (response?.statusCode == 200) {
           toast.showToast("success", response?.message);
         
+          setTimeout(() => {
             handleStepChange({ email_verified: true });
+          }, 1000);
            
         } else {
           toast.showToast("error", response?.message);

@@ -28,6 +28,7 @@ export const Profile: React.FC<Props> = observer((props) => {
       ...formData,
       onboarding_step: {
         ...user.onboarding_step,
+        email_verified:true,
         profile_complete: true,
       },
     };
@@ -40,7 +41,10 @@ export const Profile: React.FC<Props> = observer((props) => {
     setIsSubmitting(true)
       console.log(payload,'---');
       
-      handleStepChange(payload.onboarding_step as Partial<TOnboardingSteps>);
+      setTimeout(() => {
+        handleStepChange(payload.onboarding_step as Partial<TOnboardingSteps>);
+        setIsSubmitting(false)
+      }, 1000);
       setIsSubmitting(false)
     
   };
