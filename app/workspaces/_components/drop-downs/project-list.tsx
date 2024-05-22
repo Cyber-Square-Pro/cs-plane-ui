@@ -5,8 +5,7 @@ import { Layers3, Contrast, Dice4, FileVideo, FileText, Settings, ChevronDown, C
 /*
  * Author: Muhammed Adnan on 21th May 2024
  * Purpose: Renders a list of user projects with dropdown options for each project.
- * Input parameters: None
- * Return: A JSX element containing the list of projects and their respective dropdown options.
+ * Input Props: None
  */
 
 const ProjectList = () => {

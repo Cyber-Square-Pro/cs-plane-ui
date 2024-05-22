@@ -7,12 +7,12 @@ import { cn } from '@/lib/utils'
 /*
  * Author: Mohammaed Rifad
  * Purpose: Renders a sidebar navigation item that changes style when active and navigates to the specified href when clicked.
- * Input parameters:
+ * Input Props:
      - icon: LucideIcon - The icon to display in the sidebar item.
      - label: string - The label text for the sidebar item.
      - href: string - The target URL for the sidebar item.
- * Return: A JSX element representing a styled sidebar navigation item.
  * Updated by: Muhammed Adnan on 21th May 2024
+     - Adjust sidebar style as needed
  */
 
 interface ISidebarItem {
@@ -41,8 +41,8 @@ const SidebarItem = ({
     return (
        <button
        onClick={onClick}
-    //    disabled 
        type='button'
+    //    Adnan - 21 nd May 2024 :: Adjust radius, margin, padding as needed
        className={cn(
         'flex items-center gap-x-2 text-sm text-slate-600 font-[500] pl-3 transition-all hover:text-slate-600 hover:bg-slate-300/20 mb-1 rounded-md',
         isActive && 'text-sky-600 bg-sky-200/25 hover:bg-sky-200/20 hover:text-sky-700'
@@ -56,6 +56,7 @@ const SidebarItem = ({
             {label}
         </div>
 
+        {/* Adnan - 21 th May 2024 :: comment out unwanted active highlight */}
         {/* <div className={cn('ml-auto opacity-0 border-2 border-sky-700 h-full transition-all', isActive && 'opacity-100')} /> */}
 
        </button>

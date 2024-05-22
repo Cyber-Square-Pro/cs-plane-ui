@@ -7,11 +7,11 @@ import ProjectList from "../_components/drop-downs/project-list";
 /*
  * Author: Sreethu on 20th May 2024
  * Purpose: Renders a layout for the workspace, including a sidebar for project navigation and main content area.
- * Input parameters:
+ * Input Props:
     - children: React.ReactNode - The content to be displayed in the main area of the layout.
     - dashboardLink: string (optional) - A link to the dashboard to be used in the sidebar.
- * Return: A JSX element containing the structured layout of the workspace with a sidebar and main content area.
- * Updated by: Muhammed Adnan on 22th May 2024
+ * Updated by: Muhammed Adnan on 21th May 2024 
+    - Add Dashboard Sidebar and 'Your Projects' dropdown
  */
 
 const WorkspaceLayout = ({
@@ -50,13 +50,15 @@ const WorkspaceLayout = ({
         
           {/* sidebar component starts here  */}
             <div className="w-full cursor-pointer">
+              {/* Adnan - 21 th May 2024 :: Add sidebar items */}
                 <SideBar dashboardLink={dashboardLink} />
             </div>
-         {/* sidebar component ends here  */}
 
-        <div className="mt-4 h-full">
-            <ProjectList />
-        </div>
+            <div className="mt-4 h-full">
+              {/* Adnan - 21 th May 2024 :: Add 'Your projects' dropdown */}
+                <ProjectList />
+            </div>
+          {/* sidebar component ends here  */}
           
         </nav>
         </aside>
