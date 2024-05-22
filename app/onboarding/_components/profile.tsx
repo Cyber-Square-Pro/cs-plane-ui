@@ -38,10 +38,11 @@ export const Profile: React.FC<Props> = observer((props) => {
     await userStore.updateCurrentUser(payload)
     toast.showToast("success", "Profile Updated");
     setIsSubmitting(true)
-    setTimeout(() => {
+      console.log(payload,'---');
+      
       handleStepChange(payload.onboarding_step as Partial<TOnboardingSteps>);
       setIsSubmitting(false)
-    }, 1000);
+    
   };
 
   console.log("user in profile", user);
