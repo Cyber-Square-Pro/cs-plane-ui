@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { LayoutGrid, ArrowDown, Search } from "lucide-react";
 import Card from "./card";
 
 
@@ -60,7 +59,7 @@ const DashboardOverView: React.FC = (
       {/* main section starts here  */}
       <div className="h-full w-full overflow-hidden">
         <div className="relative h-full w-full overflow-x-hidden overflow-y-scroll scrollbar-md">
-          <div className="space-y-7 p-7 bg-slate-100 h-full w-full flex flex-col overflow-y-auto vertical-scrollbar scrollbar-md mb-6">
+          <div className="space-y-7 p-7 bg-zinc-100 h-full w-full flex flex-col overflow-y-auto vertical-scrollbar scrollbar-md mb-6">
             {/* greeting and time display starts */}
             <div>
               <h3 className="text-xl font-semibold"> {greeting}</h3>
@@ -83,7 +82,6 @@ const DashboardOverView: React.FC = (
                         <div>
                           <h5 className="font-semibold text-xl"> 0</h5>
                           <p className="custom-text-color text-sm xl:text-base">
-                            {" "}
                             Issues Assigned
                           </p>
                         </div>
@@ -99,13 +97,12 @@ const DashboardOverView: React.FC = (
                         <div>
                           <h5 className="font-semibold text-xl"> 0</h5>
                           <p className="custom-text-color text-sm xl:text-base">
-                            {" "}
                             Issues Created
                           </p>
                         </div>
                       </div>
                     </a>
-                  </div>{" "}
+                  </div>
                   <div className="w-full flex flex-col gap-2 hover:bg-slate-50 rounded-tl-xl lg:rounded-l-xl">
                     <a
                       href="#"
@@ -115,13 +112,13 @@ const DashboardOverView: React.FC = (
                         <div>
                           <h5 className="font-semibold text-xl"> 0</h5>
                           <p className="custom-text-color text-sm xl:text-base">
-                            {" "}
-                            Issues Overdued
+  
+                            Issues Overdue
                           </p>
                         </div>
                       </div>
                     </a>
-                  </div>{" "}
+                  </div>
                   <div className="w-full flex flex-col gap-2 hover:bg-slate-50 rounded-tl-xl lg:rounded-l-xl">
                     <a
                       href="#"
@@ -131,7 +128,6 @@ const DashboardOverView: React.FC = (
                         <div>
                           <h5 className="font-semibold text-xl"> 0</h5>
                           <p className="custom-text-color text-sm xl:text-base">
-                            {" "}
                             Issues Completed
                           </p>
                         </div>
@@ -143,19 +139,13 @@ const DashboardOverView: React.FC = (
 
               {/* render work status starts  */}
 
-<Card title="Assigned to you"/>
-<Card title="Assigned to you"/>
-<Card title="Assigned to you"/>
-<Card title="Assigned to you"/>
-<Card title="Assigned to you"/>
-<Card title="Assigned to you"/>
+              <Card title="Assigned to you" description="Issues assigned to you that are pending will show up here." />
+              <Card title="Created by you" description="Issues created by you that are pending will show up here." />
+              <Card title="Assigned by state" description="Issue assigned to you, broken down by state, will show up here." />
+              <Card title="Assigned by priority" description="Issues assigned to you, broken down by priority will show up here." />
+              <Card title="Your issue activities" description="All your issue activities across projects will show up here." />
+  
 
-              {/* render work ends starts  */}
-              {/* render active-members */}
-              <div className="lg:col-span-2">
-          
-              </div>
-              {/* render active-members ends */}
 
 
 
