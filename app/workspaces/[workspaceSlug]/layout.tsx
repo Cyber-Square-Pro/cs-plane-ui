@@ -26,7 +26,7 @@ const WorkspaceLayout = ({
 
   return (
       
-  <div className="min-h-screen flex">
+ <div className="min-h-screen flex">
     <aside className="w-80 border-2 p-2">
     <nav>
         <div className="flex justify-between mt-1 mr-2">
@@ -41,43 +41,6 @@ const WorkspaceLayout = ({
             <WorkspacePopover/>
         </Popover> 
         
-    <div className="min-h-screen flex">
-      <aside className="w-64 border-2 p-4">
-      <nav>
-        <div className="flex justify-between">
-          <button className="px-2 py-1 rounded flex items-center space-x-2 hover:bg-red">
-                            <span className="bg-blue-900 text-white px-2 py-1 rounded w-7 h-7 flex items-center justify-center">W</span>
-                            <span className="text-black">First project</span>
-          </button>
-          <button className="bg-blue-900 text-white px-2 py-1 rounded w-7 h-7 flex items-center justify-center">
-                            <span>P</span>
-          </button>
-        </div>
-        <div className="flex justify-between mt-4 mb-4">
-    
-          <button className="border-2 px-2 py-1 rounded w-64 h-8 flex items-center">
-                            <SquarePen size={17}/>
-                            <span className="text-sm font-medium ml-3">New Issue</span>
-          </button>
-                
-          <button className="ml-2 border-2 px-2 py-1 rounded w-8 h-8 flex items-center justify-center">
-                            <SearchIcon size={32} />
-          </button>
-        </div>
-        
-          {/* sidebar component starts here  */}
-            <div className="w-full cursor-pointer">
-                <SideBar  />
-            </div>
-
-            <div className="mt-4 h-full">
-                <ProjectList />
-            </div>
-          {/* sidebar component ends here  */}
-          
-        </nav>
-        </aside>
-            
         <Popover>
             <PopoverTrigger>
               <button className="bg-blue-900 text-white px-2 py-1 rounded w-7 h-7 flex items-center justify-center">S</button>
@@ -98,17 +61,15 @@ const WorkspaceLayout = ({
         </button>
       </div>
       
-        {/* sidebar component starts here  */}
-      <div className="mt-5 h-full overflow-y-auto p-2"> 
-          <div className="max-h-full">
-            SIDEBAR LINKS
-          </div>
-      </div>
-       {/* sidebar component ends here  */}
+         {/* sidebar component starts here  */}
+            <div className="w-full cursor-pointer">
+                <SideBar  />
+            </div>
 
-      <div className="mt-4 h-full overflow-y-auto p-2">
-          <span>Your Projects</span>
-      </div>
+            <div className="mt-4 h-full">
+                <ProjectList />
+            </div>
+          {/* sidebar component ends here  */}
         
       </nav>
       </aside>
