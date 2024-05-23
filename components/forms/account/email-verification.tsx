@@ -4,7 +4,7 @@ import { Toast } from "@/lib/toast/toast";
 import { EmailService } from "@/services/email.service";
 import { IVerificationCode } from "@/types/user";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,10 +28,15 @@ export const EmailVerificationForm: React.FC<Props> = observer((props) => {
   const emailService = new EmailService();
   const toast = new Toast();
 
+  const [submit, isSubmitting] = useState(false)
+
   const handleRequestNewCode = () => {
+    isSubmitting(true)
+
     return emailService.requestCode().then((response) => {
       console.log(response?.statusCode);
       if (response?.statusCode == 200) {
+        isSubmitting(false)
         console.log("Verification Code: ", response?.code);
         toast.showToast("success", response?.message);
       }
@@ -53,7 +58,8 @@ export const EmailVerificationForm: React.FC<Props> = observer((props) => {
           className=" text-sm max-w-prose text-muted-foreground cursor-pointer  hover:text-slate-800"
           onClick={handleRequestNewCode}
         >
-          Request code
+           {submit? "Sending email..." : "Request Code"} 
+           
         </span>
       </div>
       <div className="py-2">

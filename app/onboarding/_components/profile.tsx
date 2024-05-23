@@ -28,6 +28,7 @@ export const Profile: React.FC<Props> = observer((props) => {
       ...formData,
       onboarding_step: {
         ...user.onboarding_step,
+        email_verified:true,
         profile_complete: true,
       },
     };
@@ -38,10 +39,14 @@ export const Profile: React.FC<Props> = observer((props) => {
     await userStore.updateCurrentUser(payload)
     toast.showToast("success", "Profile Updated");
     setIsSubmitting(true)
-    setTimeout(() => {
-      handleStepChange(payload.onboarding_step as Partial<TOnboardingSteps>);
+      console.log(payload,'---');
+      
+      setTimeout(() => {
+        handleStepChange(payload.onboarding_step as Partial<TOnboardingSteps>);
+        setIsSubmitting(false)
+      }, 1000);
       setIsSubmitting(false)
-    }, 1000);
+    
   };
 
   console.log("user in profile", user);
