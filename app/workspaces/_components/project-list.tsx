@@ -48,12 +48,12 @@ const ProjectList = () => {
         </div>
       </button>
       {isOpen && (
-        <div className="absolute z-10 overflow-y-auto max-h-[400px] w-56 mt-1 origin-top-right right-0 scrollbar-md">
+        <div className="absolute z-10 overflow-y-auto max-h-[400px] w-full mt-1 origin-top-right scrollbar-md">
           {projects.map((project, index) => (
             <div key={index}>
               <button 
                 onClick={() => selectProject(project)} 
-                className="group flex items-center w-full px-4 py-2 mb-1 text-[13px] hover:bg-gray-100 relative"
+                className="group flex items-center w-full px-10 py-2 mb-1 text-[13px] hover:bg-gray-100 relative"
               >
                 <span>{project}</span>
                 <div className="ml-auto flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
