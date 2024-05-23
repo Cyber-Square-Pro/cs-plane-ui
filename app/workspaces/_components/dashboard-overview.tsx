@@ -40,27 +40,27 @@ export const DashboardOverView: React.FC = (() => {
             <DashboardIssueCard 
             title="Assigned to you" 
             description="Issues assigned to you that are pending will show up here." 
-            icon={<Layers />}  
+            icon={<Layers size={65} />}  
             />
             <DashboardIssueCard 
             title="Created by you" 
             description="Issues created by you that are pending will show up here." 
-            icon={<Layers />}
+            icon={<Layers size={65}/>}
             />
             <DashboardIssueCard 
             title="Assigned by state" 
             description="Issue assigned to you, broken down by state, will show up here." 
-            icon={<BarChart2 />}
+            icon={<BarChart2 size={65}/>}
             />
             <DashboardIssueCard 
             title="Assigned by priority" 
             description="Issues assigned to you, broken down by priority will show up here." 
-            icon={<Circle />}
+            icon={<History size={65} />}
             />
             <DashboardIssueCard 
             title="Your issue activities" 
             description="All your issue activities across projects will show up here." 
-            icon={<History />}
+            icon={<Circle size={65}/>}
             />
           </div>
         </div>
