@@ -2,24 +2,22 @@ import "react-toastify/dist/ReactToastify.css";
 import { SquarePen } from "lucide-react";
 import { SearchIcon } from "lucide-react";
 import SideBar from "@/components/sidebar/sidebar";
-import ProjectList from "../_components/drop-downs/project-list";
+import ProjectList from "../_components/project-list";
 
 /*
- * Author: Sreethu on 20th May 2024
- * Purpose: Renders a layout for the workspace, including a sidebar for project navigation and main content area.
- * Input Props:
+  Author: Sreethu on 20th May 2024
+  Purpose: Renders a layout for the workspace, including a sidebar for project navigation 
+           and main content area.
+  Props:
     - children: React.ReactNode - The content to be displayed in the main area of the layout.
     - dashboardLink: string (optional) - A link to the dashboard to be used in the sidebar.
- * Updated by: Muhammed Adnan on 21th May 2024 
-    - Add Dashboard Sidebar and 'Your Projects' dropdown
+  Updated by: Muhammed Adnan on 21th May 2024 - Add Dashboard Sidebar and 'Your Projects' dropdown
  */
 
 const WorkspaceLayout = ({
     children,
-    dashboardLink
 }:{
     children: React.ReactNode;
-    dashboardLink?: string 
 }) => {
 
     return (
@@ -50,12 +48,10 @@ const WorkspaceLayout = ({
         
           {/* sidebar component starts here  */}
             <div className="w-full cursor-pointer">
-              {/* Adnan - 21 th May 2024 :: Add sidebar items */}
-                <SideBar dashboardLink={dashboardLink} />
+                <SideBar  />
             </div>
 
             <div className="mt-4 h-full">
-              {/* Adnan - 21 th May 2024 :: Add 'Your projects' dropdown */}
                 <ProjectList />
             </div>
           {/* sidebar component ends here  */}
