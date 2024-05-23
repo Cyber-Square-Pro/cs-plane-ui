@@ -25,7 +25,7 @@ const WorkspaceLayout = ({
   return (
       
   <div className="min-h-screen flex">
-    <aside className="w-80 border-2 p-2 m-2">
+    <aside className="w-80 border-2 p-2">
     <nav>
         <div className="flex justify-between mt-1 mr-2">
         <Popover>
