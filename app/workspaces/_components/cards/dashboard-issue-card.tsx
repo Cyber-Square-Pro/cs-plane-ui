@@ -24,17 +24,15 @@ export const DashboardIssueCard: React.FC<Props> = ((props) => {
 
       
       <div className='flex items-center justify-between gap-2 p-6 pl-7'>
-        <div className='flex items-center gap-2'>
+      
           <Link href="#" className='text-lg font-semibold hover:underline'>
             {title}
           </Link>
+          <div className='relative w-min text-lg font-semibold flex-shrink-0'>
+              DROPDOWN 
         </div>
-        <div className='relative w-min text-lg font-semibold flex-shrink-0'>
-              DROPDOWN
-               
-            </div>
-        <div className='relative w-min text-left font-normal flex-shrink-0'></div>
-      </div>
+        </div>
+      
       <div className='h-full flex flex-col'>
         <div className='px-6'>
           <div
