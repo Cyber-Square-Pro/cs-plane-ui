@@ -50,12 +50,12 @@ const WorkspaceLayout = ({
       <div className="flex justify-between mt-4 p-1">
   
         <button className="border-2 px-2 py-2 rounded w-64 h-9 flex items-center">
-                          <SquarePen style={{ width: "18px", height: "18px" }}  />
+                          <SquarePen size={(18)}  />
                           <span className="text-sm font-medium ml-3">New Issue</span>
         </button>
               
         <button className="ml-2 border-2 px-2 py-1 rounded w-9 h-9 flex items-center justify-center">
-                          <SearchIcon style={{ width: "32px", height: "32px" }} />
+                          <SearchIcon size={18}/>
         </button>
       </div>
       
