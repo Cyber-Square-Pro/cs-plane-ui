@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { BarChart2 } from 'lucide-react';
 
 interface Props {
   title: string;
@@ -20,13 +21,18 @@ export const DashboardIssueCard: React.FC<Props> = ((props) => {
 
   return (
     <div className='bg-[#ffffff] rounded-xl border-[0.5px] w-full hover:shadow-md duration-300 flex flex-col min-h-96'>
+
+      
       <div className='flex items-center justify-between gap-2 p-6 pl-7'>
         <div className='flex items-center gap-2'>
           <Link href="#" className='text-lg font-semibold hover:underline'>
             {title}
           </Link>
         </div>
-        <Button variant="outline">DROPDOWN</Button>
+        <div className='relative w-min text-lg font-semibold flex-shrink-0'>
+              DROPDOWN
+               
+            </div>
         <div className='relative w-min text-left font-normal flex-shrink-0'></div>
       </div>
       <div className='h-full flex flex-col'>
@@ -70,8 +76,8 @@ export const DashboardIssueCard: React.FC<Props> = ((props) => {
             <div className="h-full">
               <div className="h-full grid place-items-center">
                 <div className="text-center space-y-6 flex flex-col items-center">
-                  <div className="h-24 w-24">
-                    {/* <img alt="Assigned issues" loading="lazy" width="94" height="94" decoding="async" data-nimg="1" className="w-full h-full" src=" " style={{color: "transparent"}}/> */}
+                  <div className="h-150 w-200">
+                  {icon} 
                   </div>
 
                   {activeTab === 'Pending' && (
