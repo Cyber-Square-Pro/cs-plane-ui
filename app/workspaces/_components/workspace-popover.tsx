@@ -4,7 +4,7 @@ import { Check, MessageSquarePlus, Mails, CircleUserRound, Settings, LogOut } fr
 
 /* 
 Author:  SreethuEA on May 23, 2024
-Purpose: Popover for profile details 
+Purpose: Popover for Workspace details 
 Props: None
 */
 
