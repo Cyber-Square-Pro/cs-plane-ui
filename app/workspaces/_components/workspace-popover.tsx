@@ -4,7 +4,13 @@ import  Link from 'next/link'
 import { Check,MessageSquarePlus , Mails ,CircleUserRound , Settings , LogOut } from 'lucide-react';
 
 const WorkspacePopover = () => {
- 
+    
+/* 
+Author: Sreethu EA on May 23, 2024
+Purpose: Popover for profile details 
+Props: None
+*/
+
   return (
     <PopoverContent>
       <div className="px-1 py-2 border-2 border-grey-500 bg-white">

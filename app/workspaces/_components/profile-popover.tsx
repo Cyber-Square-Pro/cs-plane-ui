@@ -3,6 +3,12 @@ import Link from 'next/link';
 import { PopoverContent } from '@nextui-org/react';
 import { CircleUserRound, Settings, LogOut } from 'lucide-react';
 
+/* 
+Author: Sreethu EA on May 23, 2024
+Purpose: Popover for profile details 
+Props: None
+*/
+
 const ProfilePopover: React.FC = () => {
   return (
     <PopoverContent>
