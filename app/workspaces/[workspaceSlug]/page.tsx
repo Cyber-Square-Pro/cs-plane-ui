@@ -1,5 +1,5 @@
 import React from 'react'
-import DashboardOverView from '../_components/dashboard-overview'
+import { DashboardOverView } from '../_components/dashboard-overview'
 
 const WorkspacePage = () => {
   return (

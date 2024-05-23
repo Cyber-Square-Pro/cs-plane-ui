@@ -6,7 +6,7 @@ interface Props {
   name: string;
 }
 
-const UserGreeting: React.FC<Props> = ({ name }) => {
+export const UserGreeting: React.FC<Props> = (( name ) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [greeting, setGreeting] = useState('');
 
@@ -50,12 +50,12 @@ const UserGreeting: React.FC<Props> = ({ name }) => {
 
   return (
     <div>
-      <h3 className="text-xl font-semibold">{greeting} {name}</h3>
+      <h3 className="text-xl font-semibold">{greeting} name</h3>
       <h6 className="flex items-center gap-2 text-xl font-semibold text-[#a3a3a3]">
         <div>{formatDate(currentDateTime)}</div>
       </h6>
     </div>
   );
-};
+});
 
-export default UserGreeting;
+

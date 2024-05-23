@@ -7,10 +7,11 @@ import { Button } from '@/components/ui/button';
 interface Props {
   title: string;
   description?: string;
+  icon?: React.ReactNode;
 }
 
-const DashboardIssueCard: React.FC<Props> = (props) => {
-  const { title, description } = props;
+export const DashboardIssueCard: React.FC<Props> = ((props) => {
+  const { title, description, icon } = props;
   const [activeTab, setActiveTab] = useState('Pending');
 
   const handleTabClick = (tab: string) => {
@@ -20,11 +21,13 @@ const DashboardIssueCard: React.FC<Props> = (props) => {
   return (
     <div className='bg-[#ffffff] rounded-xl border-[0.5px] w-full hover:shadow-md duration-300 flex flex-col min-h-96'>
       <div className='flex items-center justify-between gap-2 p-6 pl-7'>
-      <Link href="/some-page" className='text-lg font-semibold hover:underline'>
-          {title}
-        </Link>
+        <div className='flex items-center gap-2'>
+          <Link href="#" className='text-lg font-semibold hover:underline'>
+            {title}
+          </Link>
+        </div>
         <Button variant="outline">DROPDOWN</Button>
-    <div className='relative w-min text-left font-normal flex-shrink-0'></div>
+        <div className='relative w-min text-left font-normal flex-shrink-0'></div>
       </div>
       <div className='h-full flex flex-col'>
         <div className='px-6'>
@@ -47,7 +50,7 @@ const DashboardIssueCard: React.FC<Props> = (props) => {
               role="tab"
               type="button"
               aria-selected={activeTab === 'Pending'}
-              onClick = {()=> handleTabClick('Pending')}
+              onClick={() => handleTabClick('Pending')}
             >
               <span className="scale-110">Pending</span>
             </button>
@@ -57,7 +60,6 @@ const DashboardIssueCard: React.FC<Props> = (props) => {
               type="button"
               aria-selected={activeTab === 'Marked completed'}
               onClick={() => handleTabClick('Marked completed')}
-
             >
               <span className="scale-110">Marked completed</span>
             </button>
@@ -90,6 +92,4 @@ const DashboardIssueCard: React.FC<Props> = (props) => {
       </div>
     </div>
   );
-};
-
-export default DashboardIssueCard;
+});

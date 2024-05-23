@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
-import DashboardIssueCard from "./cards/dashboard-issue-card";
-import IssueStatusCard from "./cards/issue-status-card";
-import UserGreeting from "./user-greeting"; 
+import { DashboardIssueCard } from "./cards/dashboard-issue-card";
+import { IssueStatusCard } from "./cards/issue-status-card";
+import { UserGreeting } from "./user-greeting";
+import { BarChart2 } from "lucide-react";
 
-const DashboardOverView: React.FC = () => {
+export const DashboardOverView: React.FC = (() => {
   const userName = "Test User"; 
 
   return (
@@ -22,7 +23,7 @@ const DashboardOverView: React.FC = () => {
               </div>
             </div>
 
-            <DashboardIssueCard title="Assigned to you" description="Issues assigned to you that are pending will show up here." />
+            <DashboardIssueCard title="Assigned to you" description="Issues assigned to you that are pending will show up here." icon={<BarChart2 />}  />
             <DashboardIssueCard title="Created by you" description="Issues created by you that are pending will show up here." />
             <DashboardIssueCard title="Assigned by state" description="Issue assigned to you, broken down by state, will show up here." />
             <DashboardIssueCard title="Assigned by priority" description="Issues assigned to you, broken down by priority will show up here." />
@@ -32,6 +33,6 @@ const DashboardOverView: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 
-export default DashboardOverView;
+

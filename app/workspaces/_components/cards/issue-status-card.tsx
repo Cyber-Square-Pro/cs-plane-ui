@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface IssueStatusCardProps {
+interface Props {
   count: number;
   description: string;
 }
 
-const IssueStatusCard: React.FC<IssueStatusCardProps> = ({ count, description }) => {
+export const IssueStatusCard: React.FC<Props> = ({ count, description }) => {
   return (
     <div className="w-full flex flex-col gap-2 hover:bg-slate-50 rounded-tl-xl lg:rounded-l-xl">
       <a href="#" className="py-4 duration-300 rounded-[10px] w-full ">
@@ -22,4 +22,4 @@ const IssueStatusCard: React.FC<IssueStatusCardProps> = ({ count, description })
   );
 };
 
-export default IssueStatusCard;
+
