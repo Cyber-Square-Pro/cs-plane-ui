@@ -77,6 +77,14 @@
     setAccessToken(token: string) {
       localStorage.setItem('accessToken', token)
     }
+    
+    removeRefreshToken(){
+      localStorage.removeItem('refreshToken');
+    }
+    removeAccessToken(){
+      localStorage.removeItem('accessToken');
+  
+    }
 
     purgeRefreshToken() {
       // todo

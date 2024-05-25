@@ -39,4 +39,16 @@ export class AuthService extends APIService {
                 throw error?.response?.data;
               });
           }
+        
+        
+        // Created by: Sreethu EA on May 24th, 2024 - logs out the user,removes token
+        async userLogout(): Promise<any>{
+            this.removeAccessToken();
+            this.removeRefreshToken();
+            return Promise.resolve();
+          }
+    
 }
+
+
+  
