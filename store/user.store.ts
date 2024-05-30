@@ -19,6 +19,8 @@ export interface IUserStore {
   fetchCurrentUserSettings: () => Promise<IUserSettings>;
   updateCurrentUser: (data: Partial<IUser>) => Promise<IUser>;
   fetchCurrentUser: () => Promise<IUser>;
+  updateUserOnLogout: () => Promise<void>;
+  
 }
 
 export class UserStore implements IUserStore {
@@ -138,4 +140,17 @@ export class UserStore implements IUserStore {
     }
   };
 
+  //Updates the user data when logged out.
+  updateUserOnLogout = async () => {
+    try {    
+      runInAction(() => {
+        this.currentUser = null;
+        this.currentUserSettings=null;
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+  
 }
+

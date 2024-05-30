@@ -1,3 +1,8 @@
+import { LucideIcon } from "lucide-react";
+import { FC } from "react";
+
+// Created by: Mohammed Rifad on April 19th, 2024
+
 export interface IWorkspace {
     readonly id: string;
     readonly owner: IUser;
@@ -14,5 +19,8 @@ export interface IWorkspace {
     organization_size: string;
     total_issues: number;
   }
-
-  
+// Created by: Muhammed Adnan on May 23rd, 2024
+export interface IProjectItem {
+  icon: LucideIcon; 
+  title: string;
+};

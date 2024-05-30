@@ -8,7 +8,17 @@ import { ToastContainer } from "react-toastify";
 import { FormHeading } from "@/components/form-elements/form-heading";
 import FormDescription from "@/components/form-elements/form.description";
 import { useMobxStore } from "@/store/store.provider";
-import { UserStore } from "@/store/user.store";
+
+
+/*
+  Author: Mohammed Rifad on April 18th, 2024
+  Purpose: Renders Profile form
+  Props:
+    user - current user
+    handleStepChange - function to handle user onboarding steps
+
+*/
+
 
 interface Props {
   user: IUser;
@@ -21,30 +31,37 @@ export const Profile: React.FC<Props> = observer((props) => {
   const toast = new Toast();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);  
 
-  const submitCode = async (formData: IProfile) => {
-    
+  /*
+  Purpose: Submit user profile data
+  Parameters: first_name, last_name, role
+  Return: Updated user data
 
+
+   */
+  const submitForm = async (formData: IProfile) => {
+    
     const payload: Partial<IUser> = {
       ...formData,
       onboarding_step: {
         ...user.onboarding_step,
+        email_verified:true,
         profile_complete: true,
       },
     };
-    console.log(
-      "payload is",
-      payload
-    );
+
     await userStore.updateCurrentUser(payload)
     toast.showToast("success", "Profile Updated");
     setIsSubmitting(true)
-    setTimeout(() => {
-      handleStepChange(payload.onboarding_step as Partial<TOnboardingSteps>);
+    
+      setTimeout(() => {
+        handleStepChange(payload.onboarding_step as Partial<TOnboardingSteps>);
+        setIsSubmitting(false)
+      }, 1000);
       setIsSubmitting(false)
-    }, 1000);
+    
   };
 
-  console.log("user in profile", user);
+
 
   return (
     <div className="flex justify-center px-20 items-center h-full">
@@ -59,7 +76,7 @@ export const Profile: React.FC<Props> = observer((props) => {
         <FormDescription descriptionText="Create your profile for the plane account." />
         <div>
           <ProfileForm
-           onSubmit={submitCode} 
+           onSubmit={submitForm} 
            isSubmitting={isSubmitting}
            />
         </div>

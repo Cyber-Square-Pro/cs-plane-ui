@@ -10,6 +10,15 @@ import FormDescription from "@/components/form-elements/form.description";
 import { Toast } from "@/lib/toast/toast";
 import { ToastContainer } from "react-toastify";
 
+
+/*
+  Author: Mohammed Rifad on April 12th, 2024
+  Purpose: Renders sign-up page
+  Props: None
+
+*/
+
+
 const SignUpPage = () => {
   const router = useRouter();
   const authService = new AuthService();
