@@ -20,7 +20,7 @@ export const RESTRICTED_URLS = [
 
 // Created by: Muhammed Adnan on May 23rd, 2024
   export const projectItems: IProjectItem[] = [
-    { icon: Layers3, title: "Issues" },
+    { icon: Layers3, title: "Backlogs" },
     { icon: Contrast, title: "Sprints" },
     { icon: Dice4, title: "Modules" },
     { icon: FileVideo, title: "Views" },

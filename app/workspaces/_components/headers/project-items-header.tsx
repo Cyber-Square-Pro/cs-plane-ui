@@ -20,7 +20,7 @@ interface Props {
   children?: ReactNode; 
 };
 
-const ProjectItemsHeader: FC<Props> = (props) => {
+const ProjectSubHeader: FC<Props> = (props) => {
   const { icon: HeaderIcon, title, btntext, children } = props;
   return (
     <div className="relative z-[15] flex h-[3.75rem] w-full flex-shrink-0 flex-row items-center justify-between gap-x-2 gap-y-4 border-b p-4 ">
@@ -50,4 +50,4 @@ const ProjectItemsHeader: FC<Props> = (props) => {
   );
 };
 
-export default ProjectItemsHeader;
+export default ProjectSubHeader;

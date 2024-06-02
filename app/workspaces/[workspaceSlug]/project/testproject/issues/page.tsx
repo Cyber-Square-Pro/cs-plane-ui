@@ -13,7 +13,7 @@ const ProjectIssues = () => {
   return (
    <div className="h-full w-full">
     <div>
-   <ProjectItemsHeader icon = { LucideLayers } title="Issues" btntext="Add Issue">
+   <ProjectItemsHeader icon = { LucideLayers } title="Backlogs" btntext="Add Backlogs">
     <Button className="p-3 bg-white hover:bg-white border text-slate-600 h-[29px] text-[12px] rounded-sm">Filter</Button>
     <Button className="p-3 bg-white hover:bg-white border text-slate-600 h-[29px] text-[12px] rounded-sm">Display</Button>
     <Button className="p-3 bg-white hover:bg-white border text-slate-600 h-[29px] text-[12px] rounded-sm">Analytics</Button>
@@ -21,7 +21,7 @@ const ProjectIssues = () => {
    </div>
 
      <div className="h-full w-full flex items-center justify-center">
-         <h3 className="items-center">issue component</h3> 
+         <h3 className="items-center">Backlog component</h3> 
       </div>
     </div>
   );

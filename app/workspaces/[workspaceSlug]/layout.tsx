@@ -41,7 +41,7 @@ const WorkspaceLayout = ({
                 <span className="text-black truncate text-sm font-medium">First_Project</span>
               </button>
             </PopoverTrigger>
-                {/* Using the imported component here */}
+                {/* Using   the imported component here */}
             <WorkspacePopover/>
         </Popover> 
         
