@@ -1,7 +1,5 @@
-"use client";
-import React from "react";
-import { DashboardOverView } from "../_components/dashboard-overview";
-
+import React from 'react'
+import { DashboardOverView } from '../_components/dashboard-overview'
 
 /*
   Author: Fidha on May 21st, 2024
@@ -12,10 +10,11 @@ import { DashboardOverView } from "../_components/dashboard-overview";
 
 const WorkspacePage = () => {
   return (
-    <div className="flex h-full justify-center items-center text-[32px]">
-      <DashboardOverView />
+    // <div className='flex h-full justify-center items-center text-[32px]'>
+      <div className='h-screen flex flex-col overflow-hidden'>
+      <DashboardOverView/>
     </div>
-  );
-};
+  )
+}
 
-export default WorkspacePage;
+export default WorkspacePage

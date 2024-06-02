@@ -4,23 +4,23 @@ export const RouteList = [
     {
         icon: LayoutGrid,
         label: 'Dashboard',
-        href: ''
+        href: '/'
     },
     {
         icon: BarChart2,
         label: 'Analytics',
-        href: '/analytics'
+        href: '/workspaces/analytics'
     },
     {
         icon: BaggageClaimIcon,
         label: 'Projects',
-        href: '/projects'
+        href: '/workspaces/projects'
     },
     
     {
         icon: CheckCircle,
         label: 'All Issues',
-        href: '/#'
+        href: '/issues'
     },
     {
         icon: Bell,

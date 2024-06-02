@@ -28,17 +28,6 @@ export interface IUser {
     theme: IUserTheme;
   }
 
-export interface IUserLite {
-    avatar: string;
-    created_at: Date;
-    display_name: string;
-    email?: string;
-    first_name: string;
-    readonly id: string;
-    is_bot: boolean;
-    last_name: string;
-  }
-
   
 export interface IEmailPasswordFormValues {
     email: string;
