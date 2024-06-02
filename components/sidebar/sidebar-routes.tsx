@@ -15,11 +15,15 @@ const SidebarRoutes:FC<Props> = (props) => {
    
   const {dashboardLink, isDisabled} = props
 
-    const routes = RouteList
+  const routes = RouteList.map(route => ({
+    ...route,
+    href: dashboardLink ? `/workspaces/${dashboardLink}${route.href}` : route.href
+  }));
 
+ 
     const dashboardItem = RouteList.find((route) => route.label === 'Dashboard');
     if (dashboardItem) {
-      dashboardItem.href = `/workspaces/${dashboardLink}`;
+      dashboardItem.href = `${dashboardLink}`;
     }
   
     

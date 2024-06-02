@@ -5,9 +5,6 @@ import { IVerificationCode } from "@/types/user";
 
 export class EmailService extends APIService {
     constructor() {
-      console.log('next url', API_BASE_URL
-      );
-      
       super(API_BASE_URL);
     }
 

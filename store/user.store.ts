@@ -7,8 +7,6 @@ import {
   runInAction
 } from "mobx";
 import { UserService } from "@/services/user.service";
-
-
 export interface IUserStore {
   currentUser: IUser | null;
   currentUserEmail: string | null;
@@ -40,7 +38,7 @@ export class UserStore implements IUserStore {
 
     })
     this.userService = new UserService()
-    // this.loadEmailFromLocalStorage();
+     
   }
 
   setCurrentUserEmail = (email: string) => {
@@ -65,12 +63,6 @@ export class UserStore implements IUserStore {
     }
   };
 
-  // setCurrentUserEmail = (email: string) =>{
-  //   this.currentUserEmail = email;
-  //   // Persist email to local storage when it's updated
-  //   this.persistEmailToLocalStorage();
-  // }
-
   // Method to persist the email to local storage
   persistEmailToLocalStorage = () => {
     localStorage.setItem('currentUserEmail', this.currentUserEmail || '');
@@ -84,8 +76,7 @@ export class UserStore implements IUserStore {
           ...data,
         } as IUser;
       });
-
-      console.log('in service', data)
+ 
       const response = await this.userService.updateUser(data);
 
       runInAction(() => {
@@ -99,15 +90,8 @@ export class UserStore implements IUserStore {
     }
   };
 
-  //   loadEmailFromLocalStorage = () => {
-  //     const email = localStorage.getItem('currentUserEmail');
-  //     if (email) {
-  //         this.currentUserEmail = email;
-  //     }
-  // }
 
   updateUserOnBoard = async () => {
-    console.log('updatimg user onboard')
     try {
       runInAction(() => {
         this.currentUser = {
@@ -126,6 +110,7 @@ export class UserStore implements IUserStore {
     }
   };
 
+
   fetchCurrentUserSettings = async () => {
     try {
       const response = await this.userService.currentUserSettings();
@@ -140,7 +125,8 @@ export class UserStore implements IUserStore {
     }
   };
 
-  //Updates the user data when logged out.
+  //Created by: Sreethu on May 24th, 2024 - Updates the user data 
+  //            when logged out.
   updateUserOnLogout = async () => {
     try {    
       runInAction(() => {
