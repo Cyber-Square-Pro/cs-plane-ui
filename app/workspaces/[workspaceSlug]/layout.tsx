@@ -14,9 +14,9 @@ import { UserWrapper } from "./wrapper/user-wrapper";
   Purpose: Renders layout for Workspace pages 
   Updated by: - Muhammed Adnan on May 21st, 2024 - Add Dashboard Sidebar and 'Your Projects' dropdown
               - Sreethu EA on May 22nd, 2024 - Removed extra div, replaced svg
-                icon with lucide icon for search
-              - Mohammed Rifad on May 23rd - Removed header component to  
-                corresponding pages.
+                                               icon with lucide icon for search
+              - Mohammed Rifad on May 23rd, 2024 - Removed header component to  
+                                                   corresponding pages.
               - Sreethu EA on May 23rd, 2024 - Added popover component for workspace and profile 
               - Mohammed Rifad on June 2nd, 2024 - Moved workspace popover and profile popover UI
                 to components folder. Also wrapped layout with UserWrapper.
