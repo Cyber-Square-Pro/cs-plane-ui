@@ -72,9 +72,10 @@ constructor(_rootStore: RootStore) {
 
       const workspaceResponse = await this.workspaceService.userWorkspaces();
 
+      console.log('workspace', workspaceResponse)
       runInAction(() => {
+        console.log('inside store', this.workspaces)
         this.workspaces = workspaceResponse;
-         
       });
 
       return workspaceResponse;

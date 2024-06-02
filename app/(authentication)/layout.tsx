@@ -6,8 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 /*
   Author: Mohammed Rifad on April 12th, 2024
   Purpose: Renders layout for authentication pages
-  Props: None
-
+  
 */
 
 const AuthenticationLayout = ({
