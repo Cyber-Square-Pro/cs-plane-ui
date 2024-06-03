@@ -27,7 +27,7 @@ const ProjectSubHeader: FC<Props> = (props) => {
       <div className="flex items-center gap-2 overflow-ellipsis whitespace-nowrap">
         <div className=" flex flex-wrap items-center gap-2.5">
             <div className="flex items-center gap-2">
-                <span className="text-sm">Project 1</span>
+                <span className="text-[13px]">Project 1</span>
                 <ChevronRight size={15} className="text-slate-400"/>
             </div>
           <div className="flex cursor-default items-center gap-2 text-sm font-medium ">
@@ -35,7 +35,7 @@ const ProjectSubHeader: FC<Props> = (props) => {
               <HeaderIcon size={14} className="text-slate-700"/>
             </div>
             <div className="relative line-clamp-1 block max-w-[150px] overflow-hidden truncate text-slate-700">
-              <span className="text-sm">{title}</span>
+              <span className="text-[13px]">{title}</span>
             </div>
           </div>
         </div>
