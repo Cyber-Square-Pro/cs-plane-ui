@@ -5,12 +5,13 @@ import { Check, MessageSquarePlus, Mails, CircleUserRound, Settings, LogOut } fr
 import { AuthService } from '@/services/auth.service';
 import { useRouter } from 'next/navigation';
 import { useMobxStore } from '@/store/store.provider';
-
+import Link from 'next/link';
 /* 
 Author:  SreethuEA on May 23, 2024
 Purpose: Popover for Workspace details 
 Props: None
 Updated by: - Sreethu EA on May 24th, 2024 - Added Sign-out Fuctionality
+            - Ridhwan on May 30th, 2024 - Added link for workspace invitations.
 */
 
 
@@ -56,8 +57,10 @@ const WorkspacePopover: React.FC = () => {
         </div>
         <br />
         <div className="flex items-center">
-        <Mails />
+          <Link  href={"/invitations"} className='flex items-center'>
+          <Mails />
           <span className="ml-2 text-sm max-w-prose text-slate-600">Workspace Invites</span>
+          </Link>
         </div>
         <br />
         <div className="flex items-center">
