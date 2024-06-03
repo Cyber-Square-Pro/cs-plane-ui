@@ -2,14 +2,14 @@ import React, { FC } from "react";
 import SidebarRoutes from "./sidebar-routes";
 
 type Props = {
-  dashboardLink?: string;
+  workspaceSlug?: string;
   isDisabled?: boolean
 };
 const SideBar: FC<Props> = (props) => {
-  const { dashboardLink, isDisabled } = props;
+  const { workspaceSlug, isDisabled } = props;
   return (
     <>
-      <SidebarRoutes dashboardLink={dashboardLink} isDisabled = {isDisabled}  />
+      <SidebarRoutes dashboardLink={workspaceSlug} isDisabled = {isDisabled}  />
     </>
   );
 };
