@@ -95,7 +95,7 @@ export const WorkspaceForm: React.FC<Props> = (props) => {
          type="submit"
          disabled= {!isValid || isSubmitting}
         >
-         {isSubmitting ? "Creating..." : "Create Workspace"}  
+         {isSubmitting ? "Creating.." : "Create Workspace"}  
         </Button>
       </div>
     </form>
