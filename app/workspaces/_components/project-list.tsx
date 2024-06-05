@@ -4,10 +4,11 @@ import { ChevronDown, ChevronRight, Plus, MoreHorizontal } from 'lucide-react';
 import { projectItems } from '@/constants/workspace';
 
 /*
-  Author: Muhammed Adnan on May 21 st, 2024
+  Author: Muhammed Adnan on May 21st, 2024
   Purpose: Renders a list of user projects with dropdown options for each project.
   Props: None
- */
+  Updated by: - Muhammed Adnan on May 24th, 2024 - Adjusted Padding and radius as needed
+ */ 
 
 const ProjectList = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +54,7 @@ const ProjectList = () => {
             <div key={index}>
               <button 
                 onClick={() => selectProject(project)} 
-                className="group flex items-center w-full px-10 py-2 mb-1 text-[13px] hover:bg-gray-100 relative"
+                className="group flex items-center w-full px-6 py-2 mb-1 text-[13px] rounded-md hover:bg-gray-100 relative"
               >
                 <span>{project}</span>
                 <div className="ml-auto flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
