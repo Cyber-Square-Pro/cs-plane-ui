@@ -54,8 +54,8 @@ const WorkspaceLayout = ({
             </button>
           </div>
           <div className="w-full cursor-pointer mt-3">
-            <SideBar workspaceSlug={workspaceSlug} />
-            {/* <SideBar  /> */}
+            <SideBar isOnboarded={true} workspaceSlug={workspaceSlug} />
+             
           </div>
 
           <div className="mt-4 h-full">

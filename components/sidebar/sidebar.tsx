@@ -3,13 +3,15 @@ import SidebarRoutes from "./sidebar-routes";
 
 type Props = {
   workspaceSlug?: string;
-  isDisabled?: boolean
+  isOnboarded: boolean
 };
 const SideBar: FC<Props> = (props) => {
-  const { workspaceSlug, isDisabled } = props;
+  
+  const { workspaceSlug, isOnboarded } = props;
+  console.log('//', workspaceSlug)
   return (
     <>
-      <SidebarRoutes dashboardLink={workspaceSlug} isDisabled = {isDisabled}  />
+      <SidebarRoutes itemLink={workspaceSlug} isDisabled = {!isOnboarded}  />
     </>
   );
 };
