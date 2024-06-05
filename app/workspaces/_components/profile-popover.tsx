@@ -15,9 +15,7 @@ import { useMobxStore } from "@/store/store.provider";
 
 const ProfilePopover: React.FC = () => {
 
-  const {
-    user: { currentUser },
-  } = useMobxStore();
+  const {user: { currentUser },} = useMobxStore();
   
   const displayChar = currentUser?.first_name[0].toUpperCase()
   const email = currentUser?.email

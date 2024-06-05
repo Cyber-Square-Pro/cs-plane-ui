@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils'
      - icon: LucideIcon - The icon to display in the sidebar item.
      - label: string - The label text for the sidebar item.
      - href: string - The target URL for the sidebar item.
-    Updated by: Muhammed Adnan on 21th May 2024 - Adjusted sidebar style as needed. 
+    Updated by: Muhammed Adnan on 21st May 2024 - Adjusted sidebar style as needed. 
                                                  for selected item.
  */
 
