@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils'
  */
 
 interface ISidebarItem {
-    icon: LucideIcon
+    icon?: LucideIcon
     label: string
     href: string
 }
@@ -49,10 +49,11 @@ const SidebarItem = ({
        )}
        >
         <div className='flex items-center gap-x-2 py-2'>
-            <Icon 
+            {Icon && ( <Icon 
             size={16}
             className={cn('text-slate-700', isActive &&'text-sky-600')}
-            />
+            />)}
+            
             {label}
         </div>
 

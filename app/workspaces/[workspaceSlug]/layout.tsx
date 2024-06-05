@@ -19,9 +19,12 @@ import ProfilePopover from "../_components/profile-popover";
 */
 
 const WorkspaceLayout = ({
-  children
+  children,
+  params
+
 }:{
-  children: React.ReactNode
+  children: React.ReactNode;
+  params:any;
 }) => {
 
   return (
@@ -38,7 +41,7 @@ const WorkspaceLayout = ({
               </button>
             </PopoverTrigger>
                 {/* Using the imported component here */}
-            <WorkspacePopover/>
+            <WorkspacePopover slug={params.workspaceSlug} />
         </Popover> 
         
         <Popover>

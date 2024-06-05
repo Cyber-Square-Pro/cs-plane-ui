@@ -5,6 +5,7 @@ import { Check, MessageSquarePlus, Mails, CircleUserRound, Settings, LogOut } fr
 import { AuthService } from '@/services/auth.service';
 import { useRouter } from 'next/navigation';
 import { useMobxStore } from '@/store/store.provider';
+import Link from 'next/link';
 
 /* 
 Author:  SreethuEA on May 23, 2024
@@ -12,9 +13,12 @@ Purpose: Popover for Workspace details
 Props: None
 Updated by: - Sreethu EA on May 24th, 2024 - Added Sign-out Fuctionality
 */
+type Props = {
+  slug: string
+}
 
-
-const WorkspacePopover: React.FC = () => {
+const WorkspacePopover: React.FC<Props> = (props) => {
+  const {slug} = props
   const authService =new AuthService();
   const router = useRouter();
   
@@ -66,8 +70,10 @@ const WorkspacePopover: React.FC = () => {
         </div>
         <br />
         <div className="flex items-center">
-           <Settings />
+          <Link href={`/workspaces/${slug}/settings`} className="flex items-center">  
+            <Settings />
             <span className="ml-2 text-sm max-w-prose text-slate-600">Settings</span>
+            </Link>
         </div>
         <br />
         <hr />

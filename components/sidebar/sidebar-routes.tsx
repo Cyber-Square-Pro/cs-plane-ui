@@ -1,27 +1,32 @@
 "use client"
 import React, { FC } from 'react'
-import { Compass, Layout } from 'lucide-react'
+import { Compass, Layout, LucideIcon } from 'lucide-react'
 import SidebarItem from './sidebar-item'
-import { usePathname } from 'next/navigation'
-import { RouteList } from '@/constants/sidebar'
 
-
+type Route = {
+  label: string,
+  href: string,
+  icon?: LucideIcon,
+};
 
 type Props = {
   dashboardLink?: string,
-  isDisabled?: boolean
-}
+  isDisabled?: boolean,
+  routes: Route[]
+};
+
 const SidebarRoutes:FC<Props> = (props) => {
    
-  const {dashboardLink, isDisabled} = props
+  const {dashboardLink, isDisabled,routes} = props
 
-    const routes = RouteList
+    // const routes = RouteList
 
-    const dashboardItem = RouteList.find((route) => route.label === 'Dashboard');
-    if (dashboardItem) {
-      dashboardItem.href = `/workspaces/${dashboardLink}`;
+    if (dashboardLink) {
+      const dashboardItem = routes.find((route) => route.label === 'Dashboard');
+      if (dashboardItem) {
+        dashboardItem.href = `/workspaces/${dashboardLink}`;
+      }
     }
-  
     
   return (
     <div className='flex flex-col w-full'>
