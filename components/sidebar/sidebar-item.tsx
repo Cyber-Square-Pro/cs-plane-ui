@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils'
                                                  for selected item.
  */
 
-interface ISidebarItem {
+interface Props {
     icon?: LucideIcon
     label: string
     href: string
@@ -26,7 +26,7 @@ const SidebarItem = ({
     icon: Icon,
     label,
     href
-}: ISidebarItem) => {
+}: Props) => {
 
     const pathname = usePathname()
     const router = useRouter()

@@ -13,12 +13,12 @@ Purpose: Popover for Workspace details
 Props: None
 Updated by: - Sreethu EA on May 24th, 2024 - Added Sign-out Fuctionality
 */
-type Props = {
-  slug: string
+interface Props{
+  slug: string;
 }
 
 const WorkspacePopover: React.FC<Props> = (props) => {
-  const {slug} = props
+  const {slug} = props;
   const authService =new AuthService();
   const router = useRouter();
   

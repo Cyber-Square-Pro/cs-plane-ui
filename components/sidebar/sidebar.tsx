@@ -4,7 +4,7 @@ import SidebarRoutes from "./sidebar-routes";
 import { SettingsRouteList ,RouteList} from "@/constants/sidebar";
 
 
-type Props = {
+interface Props {
   dashboardLink?: string;
   isDisabled?: boolean
 

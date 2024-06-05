@@ -3,13 +3,13 @@ import React, { FC } from 'react'
 import { Compass, Layout, LucideIcon } from 'lucide-react'
 import SidebarItem from './sidebar-item'
 
-type Route = {
+interface Route{
   label: string,
   href: string,
   icon?: LucideIcon,
 };
 
-type Props = {
+interface Props {
   dashboardLink?: string,
   isDisabled?: boolean,
   routes: Route[]
