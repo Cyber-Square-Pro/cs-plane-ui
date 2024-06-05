@@ -19,6 +19,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cookie": "^0.6.0",
+    "date-fns": "^3.6.0",
     "env-cmd": "^10.1.0",
     "framer-motion": "^11.0.25",
     "jose": "^5.2.4",
