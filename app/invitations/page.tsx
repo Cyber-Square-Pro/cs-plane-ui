@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navbar } from '@/components/navbar';
-import EmptyStatePage from '@/components/modal/empty-state';
+import {EmptyState} from '@/components/modal/empty-state';
 
 /*
   Author: Ridhwan on May 30th, 2024
@@ -8,21 +8,21 @@ import EmptyStatePage from '@/components/modal/empty-state';
   Props: None
 */
 
-const Invitations = () => {
+const WorkspaceInvitationPage = () => {
   return (
     <div className='h-full w-full'>
         <div className='h-full w-full'>
             <Navbar email='user@gmail.com' />
             <div className="absolute top-[60px] left-20 bottom-0 border border-gray-200"></div>
-          <EmptyStatePage
+          <EmptyState
               title="No pending invites" 
               description="You can see here if someone invites you to a workspace."
-              imgsrc="/images/invitation.svg"
-              btntext="Back to home"
-              linkpath="/workspaces/test/"
+              imgSrc="/images/invitation.svg"
+              btnText="Back to home"
+              linkPath="/workspaces/test/"
         />
         </div>
     </div>
   )
 }
-export default Invitations;
+export default WorkspaceInvitationPage;
