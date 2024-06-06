@@ -2,17 +2,18 @@ import React, { FC } from "react";
 import SidebarRoutes from "./sidebar-routes";
 import { RouteList, SettingsRouteList } from "@/constants/sidebar";
 
-type Props = {
+interface Props  {
   workspaceSlug?: string;
   isDisabled?: boolean
+  routes: Array<{ icon?: any, label: string, href: string }>
 };
 const SideBar: FC<Props> = (props) => {
-  const combinedRoutes = [...SettingsRouteList,...RouteList]
-  const { workspaceSlug, isDisabled } = props;
+
+  const { workspaceSlug, isDisabled ,routes} = props;
  
   return (
     <>
-      <SidebarRoutes dashboardLink={workspaceSlug} isDisabled = {isDisabled} routes = {combinedRoutes} />
+      <SidebarRoutes dashboardLink={workspaceSlug} isDisabled = {isDisabled} routes = {routes} />
     </>
   );
 };

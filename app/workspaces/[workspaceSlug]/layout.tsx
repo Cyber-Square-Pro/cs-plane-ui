@@ -7,6 +7,7 @@ import ProjectList from "../_components/project-list";
 import WorkspacePopover from "../_components/workspace-popover";
 import ProfilePopover from "../_components/profile-popover";
 import { UserWrapper } from "./wrapper/user-wrapper";
+import { RouteList } from "@/constants/sidebar";
 
 /*
   Author: Reshma on April 21st, 2024
@@ -50,7 +51,7 @@ const WorkspaceLayout = ({
             </button>
           </div>
           <div className="w-full cursor-pointer">
-            <SideBar workspaceSlug={workspaceSlug} />
+            <SideBar workspaceSlug={workspaceSlug} routes={RouteList} />
           </div>
 
           <div className="mt-4 h-full">

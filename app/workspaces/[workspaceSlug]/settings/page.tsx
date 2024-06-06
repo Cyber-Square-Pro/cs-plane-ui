@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import SettingsHeader from "./_components/settings-header";
 import Sidebar from "@/components/sidebar/sidebar";
+import { SettingsRouteList } from "@/constants/sidebar";
+import MembersPage from "./_components/member";
 
 
 const SettingsPage = () => {
@@ -15,18 +17,20 @@ const SettingsPage = () => {
   return (
     <>
       <SettingsHeader title={selectedItem.label} />
-      <span className="text-xs font-semibold mt-5 ml-5 text-slate-350">SETTINGS</span>
+      <div className="mt-5">
+      <span className="text-xs font-semibold mt-10 ml-5 text-slate-350 ">SETTINGS</span>
       <div className="flex">
         <div className="w-1/4 p-4">
-          <Sidebar
-             // Pass the SettingsRouteList to the Sidebar
-            // onItemClick={handleItemClick}
-          />
+          <Sidebar routes={SettingsRouteList}
+                   
+            />
+          
         </div>
-        {/* <div className="w-4/5">
-          {selectedItem.label === "General" && <GeneralPage />}
-          {selectedItem.label === "Members" && <MembersPage />}
-        </div> */}
+        </div>
+     <div className="w-4/5">
+       
+        {selectedItem.label === "Members" && <MembersPage />}
+        </div> 
       </div>
     </>
   );

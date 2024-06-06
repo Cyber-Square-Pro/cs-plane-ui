@@ -16,14 +16,14 @@ const SettingsHeader: FC<Props> = ({ title }) => {
           <div className="flex h-6 w-6 items-center justify-center overflow-hidden">
             <Settings />
           </div>
-          <div className="line-clamp-1 max-w-[150px] overflow-hidden truncate">
+          <div className="line-clamp-1 max-w-[150px] overflow-hidden truncate text-sm">
            <a href="#">Settings</a> 
           </div>
           <div className="flex h-6 w-6 items-center justify-center">
             <ChevronRight />
           </div>
         </div>
-        <div className="line-clamp-1 max-w-[150px] overflow-hidden truncate">
+        <div className="line-clamp-1 max-w-[150px] overflow-hidden truncate text-sm">
           {title}
         </div>
       </div>
