@@ -1,6 +1,6 @@
 "use client"
 import React, { FC } from 'react'
-import { Compass, Layout, LucideIcon } from 'lucide-react'
+import { LucideIcon } from 'lucide-react'
 import SidebarItem from './sidebar-item'
 
 interface Route{

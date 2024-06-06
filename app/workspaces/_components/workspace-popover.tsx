@@ -1,11 +1,19 @@
 "use client";
-import React from 'react'
-import { PopoverContent } from '@nextui-org/react';
-import { Check, MessageSquarePlus, Mails, CircleUserRound, Settings, LogOut } from 'lucide-react';
-import { AuthService } from '@/services/auth.service';
-import { useRouter } from 'next/navigation';
-import { useMobxStore } from '@/store/store.provider';
-import Link from 'next/link';
+import React from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
+import {
+  Check,
+  MessageSquarePlus,
+  Mails,
+  CircleUserRound,
+  Settings,
+  LogOut,
+} from "lucide-react";
+import { AuthService } from "@/services/auth.service";
+import { useRouter } from "next/navigation";
+import { useMobxStore } from "@/store/store.provider";
+import { IWorkspace } from "@/types/workspace";
+import Link from "next/link";
 
 /* 
 Author:  SreethuEA on May 23, 2024
@@ -15,13 +23,14 @@ Updated by: - Sreethu EA on May 24th, 2024 - Added Sign-out Fuctionality.
             - Mohammed Rifad on June 2nd, 2024 - implemented mobX to display
               workspaces and user data. Also made changes in signout button UI.               
 */
+
 interface Props{
   slug: string;
 }
 
 const WorkspacePopover: React.FC<Props> = (props) => {
   const {slug} = props;
-  const authService =new AuthService();
+  const authService = new AuthService();
   const router = useRouter();
 
   const {
@@ -88,35 +97,49 @@ const WorkspacePopover: React.FC<Props> = (props) => {
 
             <br />
 
-        <div className="flex items-center">
-        <MessageSquarePlus />
-          <span className="ml-2 text-sm max-w-prose text-slate-600">Create Workspace</span>
-        </div>
-        <br />
-        <div className="flex items-center">
-        <Mails />
-          <span className="ml-2 text-sm max-w-prose text-slate-600">Workspace Invites</span>
-        </div>
-        <br />
-        <div className="flex items-center">
-          <CircleUserRound />
-          <span className="ml-2 text-sm max-w-prose text-slate-600">View profile</span>
-        </div>
-        <br />
-        <div className="flex items-center">
+            <div className="flex items-center">
+              <MessageSquarePlus />
+              <span className="ml-2 text-sm max-w-prose text-slate-600">
+                Create Workspace
+              </span>
+            </div>
+            <br />
+            <div className="flex items-center">
+              <Mails />
+              <span className="ml-2 text-sm max-w-prose text-slate-600">
+                Workspace Invites
+              </span>
+            </div>
+            <br />
+            <div className="flex items-center">
+              <CircleUserRound />
+              <span className="ml-2 text-sm max-w-prose text-slate-600">
+                View profile
+              </span>
+            </div>
+            <br />
+            <div className="flex items-center">
           <Link href={`/workspaces/${slug}/settings`} className="flex items-center">  
             <Settings />
             <span className="ml-2 text-sm max-w-prose text-slate-600">Settings</span>
             </Link>
         </div>
-        <br />
-        <hr />
-        <div className="flex items-center">
-          <LogOut color="red" onClick={handleLogout} />
-          <span className="ml-2 text-sm max-w-prose text-red-500">Sign Out</span>
-        </div>
-      </div>
-    </PopoverContent>
+            <br />
+            <hr />
+            <div className="flex items-center">
+              <button
+                onClick={handleLogout}
+                className="flex items-center text-red-500"
+              >
+                <LogOut className="mr-2" color="red" />
+                <span className="text-sm max-w-prose">Sign Out</span>
+              </button>
+               
+            </div>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </>
   );
 };
 
