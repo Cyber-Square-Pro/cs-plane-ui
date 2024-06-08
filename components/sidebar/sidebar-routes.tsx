@@ -12,14 +12,14 @@ interface Route{
 interface Props {
   dashboardLink?: string,
   isDisabled?: boolean,
-  routes: Route[]
+  routes: Route[],
+  onItemClick: (label: string) => void,
 };
 
 const SidebarRoutes:FC<Props> = (props) => {
    
-  const {dashboardLink, isDisabled,routes} = props
+  const {dashboardLink, isDisabled,routes,onItemClick} = props
 
-    // const routes = RouteList
 
     if (dashboardLink) {
       const dashboardItem = routes.find((route) => route.label === 'Dashboard');
@@ -37,6 +37,7 @@ const SidebarRoutes:FC<Props> = (props) => {
                 icon = { route.icon }
                 label = { route.label }
                 href = { route.href }
+                onItemClick={onItemClick}
                 />
             ))
         }

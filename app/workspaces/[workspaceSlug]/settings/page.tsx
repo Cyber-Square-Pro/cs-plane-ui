@@ -16,21 +16,16 @@ const SettingsPage = () => {
 
   return (
     <>
-      <SettingsHeader title={selectedItem.label} />
-      <div className="mt-5">
-      <span className="text-xs font-semibold mt-10 ml-5 text-slate-350 ">SETTINGS</span>
-      <div className="flex">
-        <div className="w-1/4 p-4">
-          <Sidebar routes={SettingsRouteList}
-                   
-            />
-          
+       <SettingsHeader title={selectedItem.label} />
+      <div className="mt-5 flex">
+        <div className="w-1/4 p-4 fixed">
+          <span className="text-xs font-semibold mt-10 ml-5 text-slate-350">SETTINGS</span>
+          <Sidebar routes={SettingsRouteList} onItemClick={handleItemClick} />
         </div>
+        <div className="ml-1/4 w-3/4 p-4">
+          {selectedItem.label === "Members" && <MembersPage />}
+          {/* Add other pages based on selectedItem */}
         </div>
-     <div className="w-4/5">
-       
-        {selectedItem.label === "Members" && <MembersPage />}
-        </div> 
       </div>
     </>
   );

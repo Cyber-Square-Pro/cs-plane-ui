@@ -17,16 +17,22 @@ import { cn } from '@/lib/utils'
  */
 
 interface Props {
-    icon?: LucideIcon
-    label: string
-    href: string
-}
+    icon?: LucideIcon,
+    label: string,
+    href: string,
+    onItemClick: (label: string) => void,
+};
 
 const SidebarItem = ({
     icon: Icon,
     label,
-    href
+    href,
+    onItemClick
 }: Props) => {
+
+    const handleClick = () => {
+        onItemClick(label);
+      };
 
     const pathname = usePathname()
     const router = useRouter()
@@ -41,7 +47,7 @@ const SidebarItem = ({
 
     return (
        <button
-       onClick={onClick}
+       onClick={handleClick}
        type='button'
        className={cn(
         'flex items-center gap-x-2 text-sm text-slate-600 font-[500] pl-3 transition-all hover:text-slate-600 hover:bg-slate-300/20 mb-1 rounded-md',

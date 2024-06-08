@@ -4,16 +4,18 @@ import { RouteList, SettingsRouteList } from "@/constants/sidebar";
 
 interface Props  {
   workspaceSlug?: string;
-  isDisabled?: boolean
-  routes: Array<{ icon?: any, label: string, href: string }>
+  isDisabled?: boolean;
+  routes: Array<{ icon?: any, label: string, href: string }>;
+  onItemClick: (label: string) => void;
+
 };
 const SideBar: FC<Props> = (props) => {
 
-  const { workspaceSlug, isDisabled ,routes} = props;
+  const { workspaceSlug, isDisabled ,routes,onItemClick} = props;
  
   return (
     <>
-      <SidebarRoutes dashboardLink={workspaceSlug} isDisabled = {isDisabled} routes = {routes} />
+      <SidebarRoutes dashboardLink={workspaceSlug} isDisabled = {isDisabled} routes = {routes} onItemClick={onItemClick}/>
     </>
   );
 };
