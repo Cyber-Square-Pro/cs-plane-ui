@@ -12,16 +12,15 @@ import { ChevronRight, LucideIcon } from "lucide-react";
      - children: ReactNode (optional) - Additional elements to render alongside the button.
 */
 
-
 interface Props {
   icon: LucideIcon;
   title: string;
-  btntext: string;
+  btnText: string;
   children?: ReactNode; 
 };
 
-const ProjectSubHeader: FC<Props> = (props) => {
-  const { icon: HeaderIcon, title, btntext, children } = props;
+export const ProjectSubHeader: FC<Props> = (props) => {
+  const { icon: HeaderIcon, title, btnText, children } = props;
   return (
     <div className="relative z-[15] flex h-[3.75rem] w-full flex-shrink-0 flex-row items-center justify-between gap-x-2 gap-y-4 border-b p-4 ">
       <div className="flex items-center gap-2 overflow-ellipsis whitespace-nowrap">
@@ -43,11 +42,9 @@ const ProjectSubHeader: FC<Props> = (props) => {
       <div className="flex items-center gap-2">
         {children} 
         <Button className="h-[28px] text-[12px] p-3 rounded-sm bg-blue-500 border">
-          {btntext}
+          {btnText}
         </Button>
       </div>
     </div>
   );
 };
-
-export default ProjectSubHeader;
