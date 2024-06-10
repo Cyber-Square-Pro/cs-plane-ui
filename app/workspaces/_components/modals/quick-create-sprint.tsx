@@ -26,7 +26,7 @@ export const CreateSprint = () => {
           <p className="text-[12px] font-medium">
             Drag issues from the <span className="font-bold">Backlog</span>{" "}
             section, or create new issues, to plan the work for this sprint.
-            Select <span className="font-bold">Start sprint</span> when you're
+            Select <span className="font-bold">Start sprint</span> when you&apos;re
             ready.
           </p>
         </div>
