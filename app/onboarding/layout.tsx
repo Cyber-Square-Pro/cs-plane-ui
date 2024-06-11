@@ -2,6 +2,7 @@
 import { Logo } from "@/components/logo";
 import { Navbar } from "@/components/navbar";
 import SideBar from "@/components/sidebar/sidebar";
+import { RouteList } from "@/constants/sidebar";
 import { useMobxStore } from "@/store/store.provider";
 import { Mail } from "lucide-react";
 import "react-toastify/dist/ReactToastify.css";
@@ -34,7 +35,7 @@ export default function OnboardingLayout({
       <div className="flex  flex-col lg:flex-row lg:justify-between pt-14 lg:pt-20 px-2 lg:px-8 xl:px-16">
          
         <div className="hidden lg:block lg:w-1/4">
-          <SideBar />
+          <SideBar routes={RouteList}/>
         </div>
 
         
