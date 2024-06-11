@@ -9,3 +9,10 @@ export const OrgSizeDropDownItems:string[] = [
     "50 - 249",
     "250+"
 ]
+
+export const AddMembersDropdownItems:string[] = [
+    "Guest", 
+    "Viewer", 
+    "Member",
+    "Admin"
+]

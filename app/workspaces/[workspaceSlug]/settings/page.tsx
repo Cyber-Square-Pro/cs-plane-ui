@@ -1,7 +1,7 @@
 
 "use client"
 import React, { useState } from "react";
-import SettingsHeader from "./_components/settings-header";
+import SettingsHeader from "../../_components/headers/settings-header";
 import Sidebar from "@/components/sidebar/sidebar";
 import { SettingsRouteList } from "@/constants/sidebar";
 import MembersPage from "./_components/member";
@@ -22,7 +22,7 @@ const SettingsPage = () => {
           <span className="text-xs font-semibold mt-10 ml-5 text-slate-350">SETTINGS</span>
           <Sidebar routes={SettingsRouteList} onItemClick={handleItemClick} />
         </div>
-        <div className="ml-1/4 w-3/4 p-4">
+        <div className="ml-1/4 w-3/4 p-4 ml-auto">
           {selectedItem.label === "Members" && <MembersPage />}
           {/* Add other pages based on selectedItem */}
         </div>
