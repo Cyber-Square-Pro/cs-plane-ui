@@ -35,7 +35,7 @@ export default function OnboardingLayout({
       <div className="flex  flex-col lg:flex-row lg:justify-between pt-14 lg:pt-20 px-2 lg:px-8 xl:px-16">
          
         <div className="hidden lg:block lg:w-1/4">
-          <SideBar routes={RouteList}/>
+          <SideBar/>
         </div>
 
         
