@@ -1,68 +1,63 @@
-// components/AddMemberModal.js
-"use client"
-import { useState } from 'react';
-import CustomDropdown from '@/components/custom-dropdown';
-import { AddMembersDropdownItems } from '@/constants/dropdown-items';
+import React, { useState } from "react";
+import CustomDropdown from "@/components/custom-dropdown";
+import { AddMembersDropdownItems } from "@/constants/dropdown-items";
+import { ToastContainer } from "react-toastify";
+import { observer } from "mobx-react-lite";
+import { useMobxStore } from "@/store/store.provider";
+import { Toast } from "@/lib/toast/toast";
+import FormDescription from "@/components/form-elements/form.description";
+import { IAddMemberFormValues } from "@/types/user";
+import { EmailService } from "@/services/email.service";
+import AddMemberForm from "@/components/forms/account/add-member-form";
+import { FormHeading } from "@/components/form-elements/form-heading";
 
 interface Props {
-    isOpen: boolean;
-    onClose: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
-  
-const AddMemberModal: React.FC<Props> = ({ isOpen, onClose }) => {
-  const [selectedRole, setSelectedRole] = useState(AddMembersDropdownItems[2]);
 
+const AddMemberModal: React.FC<Props> = observer(({ isOpen, onClose }) => {
+  const toast = new Toast();
+  const emailService = new EmailService();
   if (!isOpen) return null;
-
-  const handleSelect = (selectedItem: string) => {
-    setSelectedRole(selectedItem);
-  };
-
+  
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
+  const handleSubmit = async (formData: IAddMemberFormValues) => {
+    console.log("Form Data:", formData); // Log form data here
+    try {
+      const response = await emailService.addMemberService(formData);
+      if (response?.statusCode === 200) {
+        toast.showToast("success", response?.message);
+        onClose(); // Close the modal after successful invitation
+      } else {
+        toast.showToast("error", response?.message);
+      }
+    } catch (error) {
+      toast.showToast("error", "An error occurred while sending the invitation.");
+    }
+  };
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-10 cursor-default">
-      {/* Overlay with onClick handler */}
+    <div className="fixed inset-0 flex items-center justify-center z-10">
       <div className="modal-overlay fixed inset-0 bg-black opacity-50" onClick={handleOverlayClick}></div>
 
-      {/* Modal content with shadow, rounded border, and full width */}
-      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl z-20">
-        <h2 className="text-md font-bold mb-4 text-slate-700">Invite people to collaborate</h2>
+      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl z-20 text-sm">
+      <h2 className="text-md font-bold mb-4 text-slate-700">Invite people to collaborate</h2>
         <p className="text-slate-700 text-sm">Invite members to work on your workspace</p>
-        <div className="flex items-center mb-4 text-sm mt-2">
-          <input
-            type="email"
-            placeholder="Enter their email"
-            className="w-full p-1 border border-gray-300 rounded mb-4 mt-2"
-          />
-          <span className="border border-gray-300 p-1 mb-2 ml-2 rounded pr-4 text-slate-700">
-            <CustomDropdown
-              dropDownTitle="Member"
-              dropDownItems={AddMembersDropdownItems}
-              onSelect={handleSelect}
-            />
-          </span>
-        </div>
-        <div className="flex justify-end space-x-2">
-          <button
-            className="bg-gray-200 text-gray-800 px-2 py-2 rounded text-sm"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-          <button
-            className="bg-blue-500 text-white px-2 py-2 rounded text-sm"
-          >
-            Add Invitation
-          </button>
-        </div>
+
+        
+        <AddMemberForm onClose={onClose} onSubmit={handleSubmit} /> {/* Use the AddMemberForm component */}
+
+       
       </div>
+      <ToastContainer />
     </div>
   );
-};
+});
 
-export default AddMemberModal;
+export default AddMemberModal;
