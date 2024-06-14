@@ -10,7 +10,7 @@ export const AllIssuesTabs = () => {
     console.log(activeTab);
     
   return (
-    <div className="h-[2.75rem] border-b p-2">
+    <div className="h-[2.75rem] border-y p-2">
       <Tabs defaultValue="all-issues" className="w-[1500px]">
         <TabsList>
           <TabsTrigger 
