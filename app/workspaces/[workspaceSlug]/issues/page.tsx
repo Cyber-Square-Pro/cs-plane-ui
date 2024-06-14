@@ -8,6 +8,17 @@ import { useMobxStore } from '@/store/store.provider'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 
+/*
+  Author: NishaJ on May 23rd, 2024
+  Purpose: Renders UI for All Issues page
+  Props:
+    icon - LucideLayers (lucide react)
+    title - display title
+    optionList - optional list of items to display on the header.
+                 for eg: dropdown, button, icon etc
+
+*/
+
 const AllIssuesPage = () => {
   const { commandPalette: commandPaletteStore } = useMobxStore();
   const issueHeaderOptions = [
