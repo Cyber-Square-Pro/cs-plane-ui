@@ -8,6 +8,7 @@ import WorkspacePopover from "../_components/workspace-popover";
 import ProfilePopover from "../_components/profile-popover";
 import { UserWrapper } from "./wrapper/user-wrapper";
 import { RouteList } from "@/constants/sidebar";
+import { useState } from "react";
 
 /*
   Author: Reshma on April 21st, 2024
@@ -30,6 +31,11 @@ const WorkspaceLayout = ({
   params: { workspaceSlug: string };
 }) => {
   const { workspaceSlug } = params;
+  const [selectedItem, setSelectedItem] = useState("");
+
+  const handleItemClick = (label: string) => {
+    setSelectedItem(label);
+  };
 
   return (
     <UserWrapper>
@@ -51,7 +57,7 @@ const WorkspaceLayout = ({
             </button>
           </div>
           <div className="w-full cursor-pointer">
-            <SideBar workspaceSlug={workspaceSlug} routes={RouteList} />
+            <SideBar workspaceSlug={workspaceSlug} routes={RouteList}  onItemClick={handleItemClick}  />
           </div>
 
           <div className="mt-4 h-full">

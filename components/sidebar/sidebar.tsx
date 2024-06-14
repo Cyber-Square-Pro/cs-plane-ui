@@ -7,11 +7,12 @@ interface Props  {
   isDisabled?: boolean;
   routes: Array<{ icon?: any, label: string, href: string }>;
   onItemClick: (label: string) => void;
+ 
 
 };
 const SideBar: FC<Props> = (props) => {
 
-  const { workspaceSlug, isDisabled ,routes,onItemClick} = props;
+  const { workspaceSlug, isDisabled ,routes, onItemClick} = props;
  
   return (
     <>
