@@ -5,13 +5,10 @@ import { cn } from "@/lib/utils";
 import { useState } from 'react';
 
 
-const AllIssuesTabs = () => {
+export const AllIssuesTabs = () => {
     const [activeTab, setActiveTab] = useState('all-issues');
     console.log(activeTab);
     
-    const handleTabClick = (value:string) => { //function literal
-        setActiveTab(value);
-      };
   return (
     <div className="h-[2.75rem] border-b p-2">
       <Tabs defaultValue="all-issues" className="w-[1500px]">
@@ -63,5 +60,3 @@ const AllIssuesTabs = () => {
     </div>
   );
 };
-
-export default AllIssuesTabs;
