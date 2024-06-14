@@ -7,6 +7,7 @@ interface Route{
   label: string,
   href: string,
   icon?: LucideIcon,
+ 
 };
 
 interface Props {
@@ -18,7 +19,7 @@ interface Props {
 
 const SidebarRoutes:FC<Props> = (props) => {
    
-  const {dashboardLink, isDisabled,routes,onItemClick} = props
+  const {dashboardLink, isDisabled,routes, onItemClick } = props
 
 
     if (dashboardLink) {

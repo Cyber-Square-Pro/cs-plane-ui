@@ -30,9 +30,6 @@ const SidebarItem = ({
     onItemClick
 }: Props) => {
 
-    const handleClick = () => {
-        onItemClick(label);
-      };
 
     const pathname = usePathname()
     const router = useRouter()
@@ -41,13 +38,15 @@ const SidebarItem = ({
     (pathname == href || pathname?.startsWith(`${href}/`))
 
     const onClick = () => {
+        onItemClick(label);
         router.push(href)
     }
  
 
     return (
        <button
-       onClick={handleClick}
+       onClick={onClick}
+    //    onClick={onClick}
        type='button'
        className={cn(
         'flex items-center gap-x-2 text-sm text-slate-600 font-[500] pl-3 transition-all hover:text-slate-600 hover:bg-slate-300/20 mb-1 rounded-md',
