@@ -12,7 +12,7 @@ export const Logo:React.FC<Props> = (props) => {
   return (
     <Link href="/">
       <div className="pt-7">
-        <Image src="/cs-pro-logo.jpeg" alt="logo" height= {height} width={width} />
+        <Image src="/cs-pro-logo.jpg" alt="logo" height= {height} width={width} />
       </div>
     </Link>
   );

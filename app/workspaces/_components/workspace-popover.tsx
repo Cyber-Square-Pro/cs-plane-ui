@@ -77,7 +77,7 @@ const WorkspacePopover: React.FC = () => {
                     className="grid place-items-center overflow-hidden rounded bg-blue-500 text-white outline-none"
                     style={{ height: "24px", width: "24px" }}
                   >
-                    {workspace.name[0].toUpperCase()}
+                    {workspaceDisplayTxt}
                   </button>
                   <span className="truncate text-base text-sm font-medium text-slate-600 pl-2">
                     {workspace.name}
