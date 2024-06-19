@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CustomDropdown from "@/components/custom-dropdown";
-import { AddMembersDropdownItems } from "@/constants/dropdown-items";
 import { ToastContainer } from "react-toastify";
 import { observer } from "mobx-react-lite";
 import { useMobxStore } from "@/store/store.provider";
@@ -9,14 +8,18 @@ import FormDescription from "@/components/form-elements/form.description";
 import { IAddMemberFormValues } from "@/types/user";
 import { EmailService } from "@/services/email.service";
 import AddMemberForm from "@/components/forms/account/add-member-form";
-import { FormHeading } from "@/components/form-elements/form-heading";
+
+/*
+Author:  SreethuEA on May 23, 2024
+Purpose: Popover for Workspace details 
+*/
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const AddMemberModal: React.FC<Props> = observer(({ isOpen, onClose }) => {
+export const AddMemberModal: React.FC<Props> = observer(({ isOpen, onClose }) => {
   const toast = new Toast();
   const emailService = new EmailService();
   if (!isOpen) return null;
@@ -31,9 +34,9 @@ const AddMemberModal: React.FC<Props> = observer(({ isOpen, onClose }) => {
     console.log("Form Data:", formData); // Log form data here
     try {
       const response = await emailService.addMemberService(formData);
+      console.log("Response is",response)
       if (response?.statusCode === 200) {
-        toast.showToast("success", response?.message);
-        onClose(); // Close the modal after successful invitation
+        toast.showToast("success",response?.message);
       } else {
         toast.showToast("error", response?.message);
       }
@@ -42,6 +45,7 @@ const AddMemberModal: React.FC<Props> = observer(({ isOpen, onClose }) => {
     }
   };
 
+  
   return (
     <div className="fixed inset-0 flex items-center justify-center z-10">
       <div className="modal-overlay fixed inset-0 bg-black opacity-50" onClick={handleOverlayClick}></div>
@@ -60,4 +64,4 @@ const AddMemberModal: React.FC<Props> = observer(({ isOpen, onClose }) => {
   );
 });
 
-export default AddMemberModal;
+

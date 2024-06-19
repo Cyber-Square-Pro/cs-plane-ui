@@ -1,8 +1,14 @@
-import AddMemberModal from "@/app/workspaces/_components/modals/add-member-modal";
+"use client"
+import {AddMemberModal} from "@/app/workspaces/_components/modals/add-member-modal";
 import { Button } from "@/components/ui/button";
 import { Search,Dot } from "lucide-react";
 import React, { useState } from "react";
-import Join from "@/app/workspaces/_components/join";
+
+
+/*
+  Author: Sreethu on June 2nd, 2024
+  Purpose: Renders Members pages 
+*/
 
 const MembersPage = () => {
 
@@ -29,21 +35,21 @@ const MembersPage = () => {
       <div className="flex items-center gap-x-4 gap-y-2 mt-2 p-2 hover:text-slate-600 hover:bg-slate-300/20">
         <a href="#">
         <button className=" grid place-items-center overflow-hidden rounded bg-slate-500 text-white outline-none"
-                        style={{ height: "42px", width: "42px"}}>F</button>
+                        style={{ height: "42px", width: "42px"}}>S</button>
         </a>
         <div>
           <a href="#">
-            <span className="text-sm font-medium">fidha </span>
+            <span className="text-sm font-medium">Sreethu </span>
           </a>
           <div className="flex items-center">
-            <p className="text-xs text-custom-text-300">fidha.n0103</p>
+            <p className="text-xs text-custom-text-300">sreethuv007</p>
             <Dot />
-            <p className="text-xs text-custom-text-300">fidha.n0103@gmail.com</p>
+            <p className="text-xs text-custom-text-300">sreethuv0007@gmail.com</p>
           </div>
         </div>
        
       </div>
-      <Join/>
+      {/* <Join/> */}
     </div>
   );
 };

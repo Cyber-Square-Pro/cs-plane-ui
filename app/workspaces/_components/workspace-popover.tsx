@@ -102,6 +102,7 @@ const WorkspacePopover: React.FC<Props> = (props) => {
               <span className="ml-2 text-sm max-w-prose text-slate-600">
                 Create Workspace
               </span>
+              
             </div>
             <br />
             <div className="flex items-center">

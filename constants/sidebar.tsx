@@ -36,7 +36,7 @@ export const SettingsRouteList = [
     },
     {
         label: 'Members',
-        href: '/settings/members'
+        href: '/workspaces/projects/settings/members'
     },
     {
         label: 'Billing and Plans',

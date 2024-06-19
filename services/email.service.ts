@@ -36,9 +36,11 @@ export class EmailService extends APIService {
 
       async addMemberService(formData: IAddMemberFormValues): Promise<any> {
         console.log("Form Data api:", formData); // Log form data here
-        return this.post("/api/invite/member/", formData, { headers: this.getAccessToken() ? this.getHeaders() : {} })
+        return this.post("/api/send/invitation/", formData, { headers: this.getAccessToken() ? this.getHeaders() : {} })
           .then((response) => {
+            console.log(response)
             return response?.data;
+            
           })
           .catch((error) => {
             throw error?.response?.data;
