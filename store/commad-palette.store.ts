@@ -50,13 +50,15 @@ export class CommandPaletteStore implements ICommandPaletteStore{
         console.log('value',   this.isCreateProjectModalOpen )
       };
 
+      // Created by Nisha J. on Jun 19th, 2024 
+      // function to toggle issue creation modal
       toggleCreateIssueModal = (value?: boolean) => {
           
         if (value) {
-          this.isCreateProjectModalOpen = value;
+          this.isCreateIssueModalOpen = value;
         } else {
-          this.isCreateProjectModalOpen = !this.isCreateProjectModalOpen;
+          this.isCreateIssueModalOpen = !this.isCreateIssueModalOpen;
         }
-        console.log('value',   this.isCreateProjectModalOpen )
+        console.log('value',   this.isCreateIssueModalOpen )
       };     
 }
