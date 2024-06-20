@@ -10,7 +10,8 @@ import { ChevronRight, LucideIcon } from "lucide-react";
      - title: string - The title text for the project item.
      - btntext: string - The name text for the button.
      - children: ReactNode (optional) - Additional elements to render alongside the button.
-*/
+    
+     */
 
 
 interface Props {
@@ -42,9 +43,12 @@ const ProjectSubHeader: FC<Props> = (props) => {
       </div>
       <div className="flex items-center gap-2">
         {children} 
-        <Button className="h-[28px] text-[12px] p-3 rounded-sm bg-blue-500 border">
-          {btntext}
-        </Button>
+        
+           <Button className="h-[28px] text-[12px] p-3 rounded-sm bg-blue-500 border">
+            {btntext}
+           </Button>
+        
+
       </div>
     </div>
   );

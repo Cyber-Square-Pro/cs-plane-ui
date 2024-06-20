@@ -9,7 +9,7 @@ interface FilterModalProps {
   onClose: () => void;
 }
 
-const FilterModal: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
+export const FilterModal: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [priority, setPriority] = useState(PriorityDropDownItems[0]);
   const [state, setState] = useState(StateDropDownItems[0]);
@@ -82,7 +82,7 @@ const FilterModal: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
   );
 };
 
-export default FilterModal;
+
 
 
 
