@@ -8,30 +8,27 @@ import { RouteList } from '@/constants/sidebar'
 
 
 type Props = {
-  dashboardLink?: string,
-  isDisabled?: boolean
+  itemLink?: string,
+  isDisabled: boolean
 }
 const SidebarRoutes:FC<Props> = (props) => {
    
-  const {dashboardLink, isDisabled} = props
+  const {itemLink, isDisabled} = props
 
     const routes = RouteList
 
-    const dashboardItem = RouteList.find((route) => route.label === 'Dashboard');
-    if (dashboardItem) {
-      dashboardItem.href = `/workspaces/${dashboardLink}`;
-    }
+     
   
     
   return (
-    <div className='flex flex-col w-full'>
+    <div className={`flex flex-col w-full ${isDisabled ? 'pointer-events-none opacity-50' : ''}`}>
         {
             routes.map((route) => (
                 <SidebarItem
                 key = { route.href }
                 icon = { route.icon }
                 label = { route.label }
-                href = { route.href }
+                href={`/workspaces/${itemLink}/${route.href}`}
                 />
             ))
         }
