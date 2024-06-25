@@ -1,14 +1,16 @@
 "use client"
 import React, { FC } from 'react'
-import { LucideIcon } from 'lucide-react'
+import { Compass, Layout } from 'lucide-react'
 import SidebarItem from './sidebar-item'
+import { usePathname } from 'next/navigation'
+import { RouteList } from '@/constants/sidebar'
 
-interface Route{
-  label: string,
-  href: string,
-  icon?: LucideIcon,
- 
-};
+
+/*
+  Author: Mohammed Rifad on April 22nd, 2024
+  Updated by: - Mohammed Rifad on June 5th, 2024 - made the routes dynamic.yy
+*/
+
 
 type Props = {
   itemLink?: string,
@@ -18,6 +20,7 @@ const SidebarRoutes:FC<Props> = (props) => {
    
   const {itemLink, isDisabled} = props
 
+    const routes = RouteList
 
      
   
@@ -38,4 +41,4 @@ const SidebarRoutes:FC<Props> = (props) => {
   )
 }
 
-export default SidebarRoutes
+export default SidebarRoutes
