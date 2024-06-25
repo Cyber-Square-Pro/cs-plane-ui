@@ -24,6 +24,7 @@ const AddMemberForm: React.FC<Props> = ({ onSubmit, onClose }) => {
 
   const [email, setEmail] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // Handle role selection from dropdown
   const handleSelectRole = (selectedItem: string) => {
@@ -37,16 +38,27 @@ const AddMemberForm: React.FC<Props> = ({ onSubmit, onClose }) => {
       console.error("Validation error: Email, role, and workspace must be provided.");
       return;
     }
+    
+    // Set loading state
+    setIsLoading(true);
+
     console.log("Email:", email);
     console.log("Selected Role:", selectedRole);
     console.log("Workspace Name:", workspace.name);
     
-    // Call onSubmit function passed as prop
-    await onSubmit({ email, role: selectedRole, workspace_name: workspace.name });
-    
-    // Clear form fields after submission
-    setEmail("");
-    setSelectedRole("");
+    try {
+      // Call onSubmit function passed as prop
+      await onSubmit({ email, role: selectedRole, workspace_name: workspace.name });
+
+      // Clear form fields after submission
+      setEmail("");
+      setSelectedRole("");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      // Reset loading state
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -71,10 +83,13 @@ const AddMemberForm: React.FC<Props> = ({ onSubmit, onClose }) => {
         <button
           className="bg-gray-200 text-gray-800 px-2 py-1 rounded text-sm mr-2 p-1"
           onClick={onClose}
+          disabled={isLoading}
         >
           Cancel
         </button>
-        <Button type="submit">Add Member</Button>
+        <Button type="submit" disabled={isLoading}>
+          {isLoading ? "Adding..." : "Add Member"}
+        </Button>
       </div>
     </form>
   );
