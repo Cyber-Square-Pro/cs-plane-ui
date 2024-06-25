@@ -10,35 +10,27 @@ interface Route{
  
 };
 
-interface Props {
-  dashboardLink?: string,
-  isDisabled?: boolean,
-  routes: Route[],
-  onItemClick: (label: string) => void,
-};
-
+type Props = {
+  itemLink?: string,
+  isDisabled: boolean
+}
 const SidebarRoutes:FC<Props> = (props) => {
    
-  const {dashboardLink, isDisabled,routes, onItemClick } = props
+  const {itemLink, isDisabled} = props
 
 
-    if (dashboardLink) {
-      const dashboardItem = routes.find((route) => route.label === 'Dashboard');
-      if (dashboardItem) {
-        dashboardItem.href = `/workspaces/${dashboardLink}`;
-      }
-    }
+     
+  
     
   return (
-    <div className='flex flex-col w-full'>
+    <div className={`flex flex-col w-full ${isDisabled ? 'pointer-events-none opacity-50' : ''}`}>
         {
             routes.map((route) => (
                 <SidebarItem
                 key = { route.href }
                 icon = { route.icon }
                 label = { route.label }
-                href = { route.href }
-                onItemClick={onItemClick}
+                href={`/workspaces/${itemLink}/${route.href}`}
                 />
             ))
         }
