@@ -32,19 +32,19 @@ export const RESTRICTED_URLS = [
   ];
 
 
-  export const WORKSPACESETTINGS_LINKS = (workspaceName:string)=> [
+  export const WORKSPACESETTINGS_LINKS = [
 
-  
+ 
     {
       key: "general",
       label: 'General',
-      href: '/workspaces/{}/settings'
+      href: '/workspaces/[workspaceSlug]/settings'
     
     },
     {
       key: "member",
       label: 'Members',
-      href: '/workspaces/${workspaceName}/settings/members'
+      href: '/workspaces/[workspaceSlug]/settings/members'
     
     },
     {

@@ -7,23 +7,21 @@ import { WORKSPACESETTINGS_LINKS } from "@/constants/workspace";
 import { useMobxStore } from "@/store/store.provider";
 
 /*
-  Author: Sreethu on June 2nd, 2024
+  Author: Sreethu on June 20nth, 2024
   Purpose: Renders layout for Settings pages 
 */
 
 const SettingsLayout = ({
   children,
-  // params,
+  params,
+
 }: {
   children: React.ReactNode;
-  // params: { workspaceSlug: string };
+  params: { workspaceSlug: string };
+
 }) => {
 
-  // const { workspaceSlug } = params;
-  const { workspace: { workspaces } } = useMobxStore();
-  const workspaceName = workspaces && workspaces.length > 0 ? workspaces[0].name : "No Workspace";
-
-
+  const { workspaceSlug } = params;
    return (
     <UserWrapper>
     
@@ -36,7 +34,7 @@ const SettingsLayout = ({
     </div>
       
         <nav>  
-        <WSidebar RouteList={WORKSPACESETTINGS_LINKS(workspaceName)} />
+        <WSidebar RouteList={WORKSPACESETTINGS_LINKS}  workspaceSlug={workspaceSlug}/>
        </nav>
       </aside>
 
