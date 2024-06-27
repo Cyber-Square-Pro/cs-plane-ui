@@ -13,6 +13,7 @@ import { AuthService } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { useMobxStore } from "@/store/store.provider";
 import { IWorkspace } from "@/types/workspace";
+import Link from "next/link";
 
 /* 
 Author:  SreethuEA on May 23, 2024
@@ -100,10 +101,12 @@ const WorkspacePopover: React.FC = () => {
             </div>
             <br />
             <div className="flex items-center">
-              <Mails />
-              <span className="ml-2 text-sm max-w-prose text-slate-600">
-                Workspace Invites
-              </span>
+              <Link href={"/invitations"} className="flex items-center">
+                <Mails />
+                <span className="ml-2 text-sm max-w-prose text-slate-600">
+                  Workspace Invites
+                </span>
+              </Link>
             </div>
             <br />
             <div className="flex items-center">
@@ -129,7 +132,6 @@ const WorkspacePopover: React.FC = () => {
                 <LogOut className="mr-2" color="red" />
                 <span className="text-sm max-w-prose">Sign Out</span>
               </button>
-               
             </div>
           </div>
         </PopoverContent>
