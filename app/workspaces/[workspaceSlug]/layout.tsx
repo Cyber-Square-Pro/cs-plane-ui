@@ -4,10 +4,10 @@ import { SquarePen } from "lucide-react";
 import { SearchIcon } from "lucide-react";
 import SideBar from "@/components/sidebar/sidebar";
 import ProjectList from "../_components/project-list";
-import { Popover, PopoverTrigger } from "@nextui-org/react";
 import WorkspacePopover from "../_components/workspace-popover";
 import ProfilePopover from "../_components/profile-popover";
 import { UserWrapper } from "./wrapper/user-wrapper";
+import { useState } from 'react'
 
 
 /*
@@ -33,6 +33,11 @@ const WorkspaceLayout = ({
   params: { workspaceSlug: string };
 }) => {
   const { workspaceSlug } = params;
+  const [selectedItem, setSelectedItem] = useState("");
+
+  const handleItemClick = (label: string) => {
+    setSelectedItem(label);
+  };
 
   return (
     <UserWrapper>
@@ -40,7 +45,7 @@ const WorkspaceLayout = ({
       <aside className="w-[280px] overflow-hidden border-2 p-2">
         <nav>
           <div className="flex justify-between mt-1 mr-2">
-            <WorkspacePopover />
+            <WorkspacePopover slug={params.workspaceSlug}/>
               <ProfilePopover />
           </div>
           <div className="flex justify-between mt-3 p-1">

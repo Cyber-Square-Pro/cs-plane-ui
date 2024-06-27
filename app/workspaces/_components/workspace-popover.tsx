@@ -25,7 +25,12 @@ Updated by: - Sreethu EA on May 24th, 2024 - Added Sign-out Fuctionality.
             - Muhammed Adnan on June 3rd, 2024 - Adjusted Trigger style as needed.
 */
 
-const WorkspacePopover: React.FC = () => {
+interface Props{
+  slug: string;
+}
+
+const WorkspacePopover: React.FC<Props> = (props) => {
+  const {slug} = props;
   const authService = new AuthService();
   const router = useRouter();
 
@@ -98,6 +103,7 @@ const WorkspacePopover: React.FC = () => {
               <span className="ml-2 text-sm max-w-prose text-slate-600">
                 Create Workspace
               </span>
+              
             </div>
             <br />
             <div className="flex items-center">
@@ -117,11 +123,11 @@ const WorkspacePopover: React.FC = () => {
             </div>
             <br />
             <div className="flex items-center">
-              <Settings />
-              <span className="ml-2 text-sm max-w-prose text-slate-600">
-                Settings
-              </span>
-            </div>
+          <Link href={`/workspaces/${slug}/settings`} className="flex items-center">  
+            <Settings />
+            <span className="ml-2 text-sm max-w-prose text-slate-600">Settings</span>
+            </Link>
+        </div>
             <br />
             <hr />
             <div className="flex items-center">

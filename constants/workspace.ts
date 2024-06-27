@@ -1,5 +1,8 @@
+import { useMobxStore } from '@/store/store.provider';
 import { IProjectItem } from '@/types/workspace';
 import { Layers3, Contrast, Dice4, FileVideo, FileText, Settings } from 'lucide-react';
+
+
 
 
 export const RESTRICTED_URLS = [
@@ -27,3 +30,27 @@ export const RESTRICTED_URLS = [
     { icon: FileText, title: "Pages" },
     { icon: Settings, title: "Settings" }
   ];
+
+
+  export const WORKSPACESETTINGS_LINKS = [
+
+ 
+    {
+      key: "general",
+      label: 'General',
+      href: '/workspaces/[workspaceSlug]/settings'
+    
+    },
+    {
+      key: "member",
+      label: 'Members',
+      href: '/workspaces/[workspaceSlug]/settings/members'
+    
+    },
+    {
+      key: "exports",
+      label: 'Exports', 
+      href: '/workspaces/projects/settings/exports' 
+   
+    },
+  ]
