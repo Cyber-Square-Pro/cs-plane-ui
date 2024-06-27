@@ -37,7 +37,7 @@ const WorkspaceLayout = ({
   return (
     <UserWrapper>
     <div className="min-h-screen flex">
-      <aside className="w-[280px] border-2 p-2">
+      <aside className="w-[280px] overflow-hidden border-2 p-2">
         <nav>
           <div className="flex justify-between mt-1 mr-2">
             <WorkspacePopover />
