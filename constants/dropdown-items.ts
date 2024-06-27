@@ -33,4 +33,12 @@ export const PriorityDropDownItems: string[] = [
     'User1',
     'User2'
   ];
-  
+ 
+
+  export const  AddMembersDropdownItems: string[] = [
+    'Guest',
+    'Admin',
+    'Member',
+    'Owner'
+  ];
+ 
