@@ -2,7 +2,7 @@
 import { AllIssuesTabs } from '@/app/workspaces/_components/all-issues-tabs'
 import { Button } from '@/components/ui/button'
 import { LucideLayers, Plus } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
 import DashboardHeader from '../../_components/headers/dashboard-header'
 import { useMobxStore } from '@/store/store.provider'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
@@ -21,6 +21,10 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 
 const AllIssuesPage = () => {
   const { commandPalette: commandPaletteStore } = useMobxStore();
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // const openModal = () => setIsModalOpen(true);
+  // const closeModal = () => setIsModalOpen(false);
   const issueHeaderOptions = [
     <div className="flex gap-2">
 <DropdownMenu>
@@ -71,18 +75,18 @@ const AllIssuesPage = () => {
 </DropdownMenu>
     <Button key="addIssueBtn" className="gap-2 h-[30px] text-[12px]" onClick={() => commandPaletteStore.toggleCreateIssueModal(true)}>
       <Plus className="h-3 w-3" />Add Issue
-    </Button>
+    </Button>,
     </div>
   ];
   return (
-    <div>
+    <>
       <DashboardHeader
         icon={LucideLayers}
         title="All Issues"
         optionList={issueHeaderOptions}
       />
         <AllIssuesTabs/>
-    </div>
+    </>
   )
 }
 
