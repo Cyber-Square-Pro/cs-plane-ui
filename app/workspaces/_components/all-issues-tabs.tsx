@@ -1,9 +1,15 @@
 "use client"
-import EmptyPageCreate from "@/components/modal/create-modal";
+import { EmptyState } from "@/components/modal/empty-state";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { useState } from 'react';
 
+/*
+  Author: Nisha J on Jun 8th, 2024
+  Purpose: Renders UI for All Issues tabs 
+  Props: None
+  Updated by: - Nisha J on June 28th, 2024 - Used EmptyState component instead of EmptyPageCreate component.
+*/
 
 export const AllIssuesTabs = () => {
     const [activeTab, setActiveTab] = useState('all-issues');
@@ -44,13 +50,13 @@ export const AllIssuesTabs = () => {
         </TabsList>
         <TabsContent value="all-issues">
           <div>
-            <EmptyPageCreate
-                modalHeading ="No issues in the project" 
-                modalText ="First project done! Now, slice your work into trackable pieces
+            <EmptyState
+                title ="No issues in the project" 
+                description ="First project done! Now, slice your work into trackable pieces
                 with issues. Let's go!"
-                modalImg="/empty-state/issues-light.webp"
+                imgSrc="/empty-state/issues-light.webp"
                 btnText ="Create New Issue" 
-            />
+            />            
           </div>          
         </TabsContent>
         <TabsContent value="assigned">Assigned</TabsContent>
