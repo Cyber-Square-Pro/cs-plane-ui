@@ -8,6 +8,10 @@ import { Popover, PopoverTrigger } from "@nextui-org/react";
 import WorkspacePopover from "../_components/workspace-popover";
 import ProfilePopover from "../_components/profile-popover";
 import { UserWrapper } from "./wrapper/user-wrapper";
+import { SearchModal } from "../_components/modals/search-button-modal";
+import { useMobxStore } from "@/store/store.provider";
+import { observer } from "mobx-react-lite";
+
 
 
 /*
@@ -23,9 +27,10 @@ import { UserWrapper } from "./wrapper/user-wrapper";
                                                    Adjusted padding, margin, icon-size as needed.
               - Mohammed Rifad on June 2nd, 2024 - Moved workspace popover and profile popover UI
                 to components folder. Also wrapped layout with UserWrapper.
+              -Ramshija.kk on July 2nd,2024-Added Search button modal on clicking search button.
 */
 
-const WorkspaceLayout = ({
+const WorkspaceLayout = observer(({
   children,
   params,
 }: {
@@ -33,7 +38,7 @@ const WorkspaceLayout = ({
   params: { workspaceSlug: string };
 }) => {
   const { workspaceSlug } = params;
-
+  const {commandPalette :commandPaletteStore}=useMobxStore();
   return (
     <UserWrapper>
     <div className="min-h-screen flex">
@@ -49,9 +54,10 @@ const WorkspaceLayout = ({
               <span className="text-[13px] font-medium ml-2">New Issue</span>
             </button>
 
-            <button className="ml-2 border-2 py-1 px-1 rounded w-9 h-8 flex items-center justify-center">
+            <button className="ml-2 border-2 py-1 px-1 rounded w-9 h-8 flex items-center justify-center"onClick={()=>commandPaletteStore.toggleSearchModal(true)}>
               <SearchIcon size={16} className="text-slate-700"/>
             </button>
+            {commandPaletteStore.isSearchModalOpen&& (<SearchModal/>)}
           </div>
           <div className="w-full cursor-pointer mt-3">
             <SideBar isOnboarded={true} workspaceSlug={workspaceSlug} />
@@ -70,6 +76,6 @@ const WorkspaceLayout = ({
     </div>
     </UserWrapper>
   );
-};
+});
 
 export default WorkspaceLayout;
